@@ -24,9 +24,10 @@
     <a href="/">SlackOverflow</a>
     <% if !logged_in? %>
       <a href="/users/login">login</a>
+      <a href="/users/new">register</a>
     <% else %>
-      <a href="/users/<%=current_user.id%>">current_user.first_name</a>
-      <a href="/sessions/logout">Logout</a>
+      <a href="/users/<%=current_user.id%>"><%=current_user.username%></a>
+      <a href="/users/logout">Logout</a>
       <% end %>
   </nav>
   <%= yield %>
