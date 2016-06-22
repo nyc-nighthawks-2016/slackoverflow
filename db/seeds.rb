@@ -1,5 +1,14 @@
 users = []
 
+# What has been Seeded:
+# Users (20)
+# Questions (20)
+# Answers (40)
+# Comments (80) (40 on questions, 40 on answers)
+#
+
+
+
 20.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
