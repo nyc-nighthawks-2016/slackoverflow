@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Please log in to your account!</h1><br>
+
+  <% if @errors %>
+  <% @errors.each do |error| %>
+  <ul>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <form action="/sessions/login" method="post">
+    <table>
+      <tr>
+        <td><label for="email">Email:</label></td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td><input name="email" type="email"></td>
+      </tr>
+      <tr>
+        <td><label for="password">Password:</label></td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td><input name="password" type="password"></td>
+      </tr>
+    </table>
+      <br><input type="submit" value="Login!">
+  </form>
+</div>
