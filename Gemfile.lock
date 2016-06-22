@@ -112,6 +112,7 @@ DEPENDENCIES
   capybara
   factory_girl
   faker
+  nokogiri (>= 1.6.7.rc3)
   pg
   pry
   pry-byebug

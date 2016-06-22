@@ -1,0 +1,45 @@
+
+<div class='container'>
+  <!-- question title -->
+<h1><%=@question.title%></h1>
+
+<!-- vote forms and count -->
+<div>
+<!-- <form> -->
+<p><%=@question.vote_count%></p>
+<!-- <form> -->
+</div>
+
+<!-- question body -->
+<p><%=@question.question%></p>
+
+<!-- question author -->
+<div><a href='/users/<%=@question_author.id%>'><%=@question_author.first_name%></a></div>
+
+<ul>
+<!-- question comments -->
+<div><%@question.comments.each do |comment|%>
+<li><%=comment.comment%></li>
+<li><a href='/users/<%=comment.commentable_id%>'><%=User.find(comment.commentable_id).first_name%></a></li>
+<li><%=comment.created_at%></li><br>
+<%end%>
+</ul>
+</div>
+
+<!-- question answer form -->
+<form action='/questions/<%=@question.id%>/answers/new' method='post'>
+  <input type="text" name="answers[answer]">
+  <input type="submit" value="Submit">
+</form>
+
+<div><%@question.answers.length%> Answers</div>
+
+<!-- question answers -->
+<div><%@question.answers.each do |answer|%>
+<li><%=answer.answer%></li>
+<%end%>
+</ul>
+</div>
+
+
+</div>
