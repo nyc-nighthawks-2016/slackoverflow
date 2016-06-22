@@ -1,3 +1,10 @@
+
+  <% if @errors %>
+  <% @errors.each do |error| %>
+  <div><%= error.full_message %></div>
+  <% end %>
+  <% end %>
+
 <header>
   <h1>SlackOverflow</h1>
   <p id="tabs">
