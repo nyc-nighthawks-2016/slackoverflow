@@ -8,6 +8,11 @@
   </p>
 </header>
 
+<ul>
+	<% @questions.each do |question| %>
+		<li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
+	<% end %>
+</ul>
 
 
 <form id="posts" method="post" action="/posts">
