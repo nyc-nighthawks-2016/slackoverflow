@@ -6,10 +6,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
 
-
   validates :username, :email, { uniqueness: true, presence: true }
-
-  validates :first_name, :last_name, :location, :password { presence: true }
-
+  validates :first_name, :last_name, :location, :password, { presence: true }
   validates :password, length: { minimum: 8 }
+
 end
