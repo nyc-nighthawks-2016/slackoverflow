@@ -25,21 +25,36 @@
 <%end%>
 </ul>
 </div>
-
-<!-- question answer form -->
-<form action='/questions/<%=@question.id%>/answers/new' method='post'>
-  <input type="text" name="answers[answer]">
-  <input type="submit" value="Submit">
-</form>
-
-<div><%=@question.answers.length%> Answers</div>
+<br>
+<div><%=@question.answers.length%> Answers</div><br>
 
 <!-- question answers -->
-<div><%@question.answers.each do |answer|%>
-<li><%=answer.answer%></li>
+<div class='answers'><%@question.answers.each do |answer|%>
+  <div class='voting_box'>
+  <!-- <form> -->
+  <p><%=answer.vote_count%></p>
+  <!-- <form> -->
+  </div>
+<li><%=answer.answer%></li><br>
+<li><a href='/users/<%=answer.user_id%>'><%=User.find(answer.user_id).first_name%></a></li><br>
+<div class='answer_comments'><%answer.comments.each do |comment|%>
+<li><%=comment.comment%></li>
+<li><a href='/users/<%=comment.user_id%>'><%=User.find(comment.user_id).first_name%></a></li>
+<li><%=comment.created_at%></li><br>
+  <%end%>
 <%end%>
 </ul>
 </div>
 
 
+<br>
+<div class='post_answer'>
+Your Answer
+<!-- question answer form -->
+<form action='/questions/<%=@question.id%>/answers/new' method='post'>
+  <input type="text" name="answers[answer]">
+  <input type="submit" value="Submit">
+</form>
+<br>
+</div>
 </div>
