@@ -17,6 +17,7 @@ gem 'pry-byebug'
 gem 'rake'
 
 gem 'shotgun'
+gem "nokogiri", ">= 1.6.7.rc3"
 
 group :test do
   gem 'shoulda-matchers'

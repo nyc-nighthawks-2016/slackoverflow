@@ -45,7 +45,7 @@ end
                    comment: Faker::Hipster.paragraphs,
                    user_id: rand(1..20),
                    commentable_id: rand(1..20),
-                   commentable_type: "question"})
+                   commentable_type: "Question"})
 end
 
 40.times do
@@ -53,7 +53,7 @@ end
                    comment: Faker::Hipster.paragraphs,
                    user_id: rand(1..20),
                    commentable_id: rand(1..40),
-                   commentable_type: "answer"})
+                   commentable_type: "Answer"})
 end
 
 # value = [-1, 1]
