@@ -1,13 +1,14 @@
 <div class="container">
   <h1>Create a new account!</h1><br>
   <% if @errors %>
-  <% @errors.each do |error| %>
   <ul>
+  <% @errors.each do |error| %>
+
     <li><%= error %></li>
     <% end %>
   </ul>
   <% end %>
-  <form action="/users/new" method="post">
+  <form action="/users" method="post">
     <table>
       <tr>
         <td><label for="user[first_name]">First Name:</label></td>

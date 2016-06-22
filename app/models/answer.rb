@@ -10,11 +10,11 @@ class Answer < ActiveRecord::Base
     # get all votes for this answer
     votes = Vote.where(votable_type: self.class.to_s.downcase, votable_id: self.id).to_a
     # sum all values of votes
-    votes.reduce( {sum, vote} sum + vote.vote_value )
-  #   sum = 0
-  #   votes.each do |vote|
-  #     sum += vote.vote_value
-  #   end
-  #   return sum
+    votes.reduce(0) { |sum, vote| sum + vote.vote_value }
+    # sum = 0
+    # votes.each do |vote|
+    #   sum += vote.vote_value
+    # end
+    # return sum
   end
 end
