@@ -1,6 +1,6 @@
 <header>
   <h1>SlackOverflow</h1>
-  <p>
+  <p id="tabs">
     <a href="#posts">latest</a>
     <a href="#">comments</a>
     <a href="#">popular</a>
@@ -8,9 +8,10 @@
   </p>
 </header>
 
+<h2>All Questions</h2>
 <ul>
 	<% @questions.each do |question| %>
-		<li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
+		<li class="question-listing"><a class="question-hyperlink" href="/questions/<%= question.id %>"><%= question.title %></a></li>
 	<% end %>
 </ul>
 

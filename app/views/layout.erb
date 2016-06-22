@@ -20,7 +20,7 @@
   <title></title>
 </head>
 <body>
-  <nav>
+  <nav id="navbar">
     <a href="/">SlackOverflow</a>
     <% if !logged_in? %>
       <a href="/sessions/login">login</a>
@@ -31,7 +31,7 @@
       <% end %>
   </nav>
 
-  <nav>
+  <nav id="sorting">
     <a href="">Questions</a>
     <a href="">Jobs</a>
     <a href="">Tags</a>
