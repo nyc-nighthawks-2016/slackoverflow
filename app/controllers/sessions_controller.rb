@@ -7,6 +7,8 @@ end
 post '/sessions/login' do
   @user = User.find_by(email: params[:email])
   if @user
+    status 200
+    if request.xhr?
     if @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect '/'
