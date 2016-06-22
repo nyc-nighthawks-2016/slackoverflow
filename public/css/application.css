@@ -9,11 +9,25 @@
 
   font-size: 16px;
   font-weight: 400;
+
+}
+
+.question-hyperlink:hover {
+  color: #19d9f0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer
 }
 
 
-
-
+.question-text {
+  padding: 0;
+  padding-bottom: 5px;
+  margin: 0;
+  color: #3b4045;
+}
 /*body {
   counter-reset:section;
   background-color: #F6F6EF;

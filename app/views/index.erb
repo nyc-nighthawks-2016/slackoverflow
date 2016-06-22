@@ -9,11 +9,21 @@
 </header>
 
 <h2>All Questions</h2>
-<ul>
+<div class="questions-list">
 	<% @questions.each do |question| %>
-		<li class="question-listing"><a class="question-hyperlink" href="/questions/<%= question.id %>"><%= question.title %></a></li>
+		<div class="question-listing">
+			<a class="question-hyperlink" href="/questions/<%= question.id %>"><%= question.title %></a>
+			<p class="question-text">
+				<% if question.question.length > 200 %>
+					<% text = question.question[0...200]+" ..." %>
+				<% else %>
+					<% text = question.question %>
+				<% end %>
+				<%= text %>
+			</p>
+		</div>
 	<% end %>
-</ul>
+</div>
 
 
 <form id="posts" method="post" action="/posts">
