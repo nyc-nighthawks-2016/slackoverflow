@@ -27,6 +27,13 @@
       <li class="navbar-item">
         <a class="navbar-link" id="login-trigger" href="/sessions/login">login <span>▼</span></a>
         <div id="login-content">
+        <% if @errors %>
+        <% @errors.each do |error| %>
+        <ul>
+          <li><%= error %></li>
+          <% end %>
+        </ul>
+        <% end %>
           <form>
             <fieldset id="inputs">
               <input id="username" type="email" name="Email" placeholder="Your email address" required>
@@ -40,6 +47,7 @@
         </div>
       </li>
       <li class="navbar-item"><a class="navbar-link" href="/users/new">register</a></li>
+
     <% else %>
      <li class="navbar-item"><a class="navbar-link" href="/users/<%=current_user.id%>"><%=current_user.username%></a></li>
      <li class="navbar-item"><a class="navbar-link" href="/sessions/logout">Logout</a></li>
