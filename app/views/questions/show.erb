@@ -48,9 +48,13 @@
 <h3>Answers</h3>
 <div class='answers'><%@question.answers.each do |answer|%>
   <div class='voting_box'>
-  <!-- <form> -->
-  <p><%=answer.vote_count%></p>
-  <!-- <form> -->
+  <form class="upvote" method='post' action="/answers/<%= answer.id %>/upvote">
+    <input type="submit" value="Up Vote">
+  </form>
+  <div class="vote-count"><%= answer.vote_count %></div>
+  <form class="downvote" method='post' action="/answers/<%= answer.id %>/downvote">
+    <input type="submit" value="Down Vote">
+  </form>
   </div>
 <li><%=answer.answer%></li><br>
 <li><a href='/users/<%=answer.user_id%>'><%=User.find(answer.user_id).first_name%></a></li><br>
