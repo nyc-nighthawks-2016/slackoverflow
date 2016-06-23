@@ -32,7 +32,6 @@ questions = []
                                 title: Faker::Company.catch_phrase,
                                 question: Faker::Hipster.paragraphs,
                                 user_id: rand(1..20),
-                                vote_count: rand(500),
                                 created_at: Faker::Date.between(10.days.ago, Date.today)})
 end
 
@@ -41,8 +40,8 @@ end
   Answer.create!({
                   answer: Faker::Company.catch_phrase,
                   user_id: rand(1..20),
-                  question_id: rand(1..20),
-                  vote_count: rand(25)})
+                  question_id: rand(1..20)
+                  })
 end
 
 40.times do
@@ -61,16 +60,20 @@ end
                    commentable_type: "Answer"})
 end
 
+question = Question.find(1)
+Vote.create!(user_id: question.user_id, votable_id: 1, votable_type: "question", vote_value: 1)
+# 40.times do
+#   Tag.create!({subject: Faker::Superhero.name})
+# end
 
-40.times do
-  Tag.create!({subject: Faker::Superhero.name})
-end
+
+# 10.times do
+#     Question.find(rand(1..20)).tags << Tag.find(rand(1..40))
+# end
 
 
-10.times do
-    Question.find(rand(1..20)).tags << Tag.find(rand(1..40))
-end
 
+# #Votes
 # value = [-1, 1]
 # 40.times do
 #   Vote.create!({

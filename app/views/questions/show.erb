@@ -11,13 +11,29 @@
 </div>
 
 <!-- question body -->
+<h3>Question body</h3>
 <p><%=@question.question%></p>
 
+<!-- question votes -->
+<h3>Question votes</h3>
+<div class="question-vote-count">
+  <form class="upvote" method='post' action="/questions/<%= @question.id %>/upvote">
+    <input type="submit" value="Up Vote">
+  </form>
+	<div class="vote-count"><%= @question.vote_count %></div>
+  <form class="downvote" method='post' action="/questions/<%= @question.id %>/downvote">
+    <input type="submit" value="Down Vote">
+  </form>
+</div>
+
+
 <!-- question author -->
-<div><a href='/users/<%=@question_author.id%>'><%=@question_author.first_name%></a></div>
+<h3>Question author</h3>
+<div><a href="/users/<%= @question_author.id %>"><%= @question_author.first_name %></a></div>
 
 <ul>
 <!-- question comments -->
+<h3>Question comments</h3>
 <div><%@question.comments.each do |comment|%>
 <li><%=comment.comment%></li>
 <li><a href='/users/<%=comment.user_id%>'><%=User.find(comment.user_id).first_name%></a></li>
@@ -29,6 +45,7 @@
 <div><%=@question.answers.length%> Answers</div><br>
 
 <!-- question answers -->
+<h3>Answers</h3>
 <div class='answers'><%@question.answers.each do |answer|%>
   <div class='voting_box'>
   <!-- <form> -->

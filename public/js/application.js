@@ -59,4 +59,16 @@ $(document).ready(function(){
       });
     });
 
+    // $('.upvote').on('submit', function(e) {
+    //   e.preventDefault();
+    //   debugger
+    //   $(this).parent().find('div[class=vote-count]');
+    //   $.ajax({
+    //     url: $(this).attr('action'),
+    //     method: $(this).attr('method')
+    //   })
+    //   .done(function(response) {
+
+    //   })
+    // })
 });
