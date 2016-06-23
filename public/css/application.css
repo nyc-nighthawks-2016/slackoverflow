@@ -96,7 +96,7 @@ a {
   cursor: pointer;
 }
 
-ul {
+/*ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -109,7 +109,7 @@ ul {
 
 li {
   float: left;
-}
+}*/
 
 #login {
   border-right: 1px solid #ddd;
