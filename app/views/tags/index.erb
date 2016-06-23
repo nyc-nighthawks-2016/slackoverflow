@@ -1,0 +1,22 @@
+<div class='container'>
+  <!-- page title -->
+  <div class='popular'>
+    <h1>Tags</h1>
+    <p>A tag is a keyword or label that categorizes your question with other, similar questions. Using the right tags makes it easier for others to find and answer your question.</p>
+
+  <!-- tag search bar
+  'Type to find tags:' a post form to search -->
+
+  <!-- tag information -->
+    <div>
+      <ul>
+        <%@tags.each do |tag|%>
+          <li><%=tag.subject%></a></li>
+          <li><%=tag.tagged_today%> asked today</li>
+        <%end%>
+      </ul>
+    </div>
+
+
+  </div>
+</div>
