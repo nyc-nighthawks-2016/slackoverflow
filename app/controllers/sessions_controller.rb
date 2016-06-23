@@ -22,21 +22,20 @@ post '/sessions/login' do
       status 422
       @errors = ['User does not exist!!!']
     end
-  # else
-  #   @user = User.find_by(email: params[:email])
-  #   if @user
-  #     if @user.authenticate(params[:password])
-  #       session[:user_id] = @user.id
-  #       redirect '/'
-  #     else
-  #       # binding.pry
-  #       @errors = @user.errors.full_messages
-  #       erb :'sessions/login'
-  #     end
-  #   else
-  #     @errors = ['User does not exist!!!']
-  #     erb :'sessions/login'
-  #   end
+  else
+    @user = User.find_by(email: params[:email])
+    if @user
+      if @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        redirect "/users/#{@user.id}"
+      else
+        @errors = @user.errors.full_messages
+        erb :'sessions/login'
+      end
+    else
+      @errors = ['User does not exist!!!']
+      erb :'sessions/login'
+    end
   end
 
 end

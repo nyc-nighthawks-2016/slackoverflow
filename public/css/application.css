@@ -87,7 +87,7 @@ body {
 
 
 .counts-container {
-  width: 100px;
+  width: 150px;
 }
 
 
@@ -228,6 +228,16 @@ li #login-content {
 }
 
 .answers {
+  text-align: center;
+  display: inline-block;
+  height: 38px;
+  min-width: 38px;
+  margin: 0 3px 0 0;
+  font-size: 11px;
+  color: #848d95;
+}
+
+.question-count {
   text-align: center;
   display: inline-block;
   height: 38px;
