@@ -10,20 +10,20 @@
 <div class="">
   <p>
     Questions: <%= @questions.length %>
-      <ul class="regular-list">
+      <ul>
         <% @questions.each do |question| %>
-          <li class="regular-list-item"><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
+          <li><a href="/questions/<%= question.id %>"><%= question.title %></a></li>
         <% end %>
       </ul>
   </p>
 </div>
 
-<div class="">
+<div>
   <p>
     Answers: <%= @answers.length %>
-    <ul class="regular-list">
+    <ul>
       <% @answers.each do |answer| %>
-        <li class="regular-list-item"><a href="/questions/<%= answer.question_id %>"><%= Question.find(answer.question_id).title %></a></li>
+        <li><a href="/questions/<%= answer.question_id %>"><%= Question.find(answer.question_id).title %></a></li>
       <% end %>
     </ul>
   </p>
@@ -32,12 +32,12 @@
 <div class="">
   <p>
     Comments: <%= @comments.length %>
-    <ul class="regular list">
+    <ul class="">
       <% @comments.each do |comment| %>
         <% if comment.commentable_type == "Question" %>
-          <li class="regular-list-item"><a href="/questions/<%= comment.commentable_id %>"><%= Question.find(comment.commentable_id).title %></a></li>
+          <li class=""><a href="/questions/<%= comment.commentable_id %>"><%= Question.find(comment.commentable_id).title %></a></li>
         <% elsif comment.commentable_type == "Answer" %>
-          <li class="regular-list-item"><a href="/questions/<%= Answer.find(comment.commentable_id).question_id %>"><%= Question.find(Answer.find(comment.commentable_id).question_id).title %></a></li>
+          <li class="r"><a href="/questions/<%= Answer.find(comment.commentable_id).question_id %>"><%= Question.find(Answer.find(comment.commentable_id).question_id).title %></a></li>
         <% end %>
       <% end %>
     </ul>
