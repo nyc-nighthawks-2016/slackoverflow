@@ -17,3 +17,15 @@ post '/' do
       redirect '/questions/new'
     end
 end
+
+get '/popular' do
+	@questions = Question.order(view_count: :desc)
+
+	erb :'tabs/popular'
+end
+
+get '/newest' do
+	@questions = Question.order(created_at: :desc)
+
+	erb :'tabs/newest'
+end
