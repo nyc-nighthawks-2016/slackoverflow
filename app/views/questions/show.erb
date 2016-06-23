@@ -61,19 +61,23 @@
 <div class='answer_comments'><%answer.comments.each do |comment|%>
 <li><%=comment.comment%></li>
 <li><a href='/users/<%=comment.user_id%>'><%=User.find(comment.user_id).first_name%></a></li>
-<li><%=comment.created_at%></li><br>
+<li><%=comment.created_at%></li>
   <%end%>
 <%end%>
 </ul>
 </div>
 
-
 <br>
-<div class='post_answer'>
+<div>
 Your Answer
+<% if @errors %>
+<%@errors.each do |error|%>
+<%=error%>
+<%end%>
+<%end%>
 <!-- question answer form -->
-<form action='/questions/<%=@question.id%>/answers/new' method='post'>
-  <input type="text" name="answers[answer]">
+<form action='/questions/<%=@question.id%>' method='post'>
+  <input type="text" name="answer">
   <input type="submit" value="Submit">
 </form>
 <br>
