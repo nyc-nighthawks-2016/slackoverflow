@@ -78,7 +78,6 @@ end
 post '/answers/:id/downvote' do
   # if request.xhr?
   # else
-  binding.pry
   answer = Answer.find(params[:id])
   @question = answer.question
   @question_author = User.find(@question.user_id)
