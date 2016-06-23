@@ -17,7 +17,6 @@ post '/sessions/login' do
       else
         status 422
         @errors = @user.errors.full_messages
-        erb :index
       end
     else
       status 422
