@@ -20,7 +20,7 @@
 <!-- question comments -->
 <div><%@question.comments.each do |comment|%>
 <li><%=comment.comment%></li>
-<li><a href='/users/<%=comment.commentable_id%>'><%=User.find(comment.commentable_id).first_name%></a></li>
+<li><a href='/users/<%=comment.user_id%>'><%=User.find(comment.user_id).first_name%></a></li>
 <li><%=comment.created_at%></li><br>
 <%end%>
 </ul>
