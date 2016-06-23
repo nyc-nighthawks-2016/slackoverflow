@@ -1,22 +1,31 @@
 <div class='container'>
   <!-- page title -->
-  <div class='popular'>
-    <h1>Tags</h1>
+  <header>
+    <h1>Tagged Questions</h1>
+    <p id="tabs">
+      <a href="#">popular</a>
+      <a href="#">name</a>
+      <a href="#">new</a>
+    </p>
+  </header>
     <p>A tag is a keyword or label that categorizes your question with other, similar questions. Using the right tags makes it easier for others to find and answer your question.</p>
-
   <!-- tag search bar
   'Type to find tags:' a post form to search -->
 
   <!-- tag information -->
     <div>
-      <ul>
         <%@tags.each do |tag|%>
-          <li><%=tag.subject%></a></li>
-          <li><%=tag.tagged_today%> asked today</li>
+          <p><a href='/tags/<%=tag.id%>'><%=tag.subject%></a> x <%=tag.tag_used%></p>
+          <p class="question-text">
+            <% if tag.summary.length > 200 %>
+              <% text = tag.summary[0...200]+" ..." %>
+            <% else %>
+              <% text = tag.summary %>
+            <% end %>
+            <%= text %>
+          </p>
+          <p><%=tag.tag_used_today%> asked today, <%=tag.tag_used_this_week%> this week</p><br>
         <%end%>
-      </ul>
     </div>
 
-
-  </div>
 </div>

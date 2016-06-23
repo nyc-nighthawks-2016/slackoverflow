@@ -1,6 +1,51 @@
 <div class='container'>
   <!-- question title -->
-<h1>Tagged Questions</h1>
 
+<header>
+  <h1>Tagged Questions</h1>
+  <p id="tabs">
+    <a href="#posts">newest</a>
+    <a href="#">frequent</a>
+    <a href="#">featured</a>
+    <a href="#">votes</a>
+    <a href="#">active</a>
+  </p>
+</header>
+
+<div class="questions-list">
+	<% @questions.each do |question| %>
+		<div class="question-listing">
+
+			<div class="summary-container">
+				<a class="question-hyperlink" href="/questions/<%= question.id %>"><%= question.title %></a>
+
+				<p class="question-text">
+					<% if question.question.length > 200 %>
+						<% text = question.question[0...200]+" ..." %>
+					<% else %>
+						<% text = question.question %>
+					<% end %>
+					<%= text %>
+				</p>
+			</div>
+
+      <div><%=question.user.username%></div>
+      <div><%=time_since_creation(question)%> minutes ago</div>
+
+			<div class="counts-container">
+				<div class="votes">
+					<div class="count"><%= question.votes.length %></div>
+					<div>votes</div>
+				</div>
+
+				<div class="answers">
+					<div class="count"><%= question.answers.length %></div>
+					<div>answers</div>
+				</div>
+			</div>
+
+		</div>
+	<% end %>
+</div>
 
 </div>
