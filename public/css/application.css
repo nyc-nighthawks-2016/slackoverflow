@@ -93,7 +93,7 @@ body {
 
 a {
   text-decoration: none;
-  cursor: pointer
+  cursor: pointer;
 }
 
 ul {
@@ -235,6 +235,7 @@ li #login-content {
   margin: 0 3px 0 0;
   font-size: 11px;
   color: #848d95;
+}
 
 #login label {
   float: right;
@@ -248,6 +249,9 @@ li #login-content {
 
 }
 
+/*#question-form {
+  align: center;
+}*/
 #question-form {
   display: none;
 }

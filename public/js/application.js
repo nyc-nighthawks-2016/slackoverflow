@@ -27,7 +27,7 @@ $(document).ready(function(){
     });
   });
 
-    $('a[href=#question-form]').on('click', function(e) {
+    $('a[href=question-form]').on('click', function(e) {
       e.preventDefault();
       $('#question-form').show();
       $('#question').find('input[name=title]').focus();
