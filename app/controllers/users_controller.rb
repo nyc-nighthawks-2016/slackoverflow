@@ -23,6 +23,11 @@ end
 
 get '/users/:id' do
   @user = User.find(params[:id])
+  if logged_in? && @user != current_user
+    view_count = @user.view_count
+    view_count += 1
+    @user.update_attribute(:view_count, view_count)
+  end
   @questions = @user.questions
   @answers = @user.answers
   @comments = @user.comments
