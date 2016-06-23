@@ -55,7 +55,7 @@
 		</div>
 	<% end %>
 </div>
-
+<% if logged_in? %>
 <div id="question-form">
 <form id="question" method="post" action="/">
 <table>
@@ -67,3 +67,4 @@
 </table>
 </form>
 </div>
+<% end %>

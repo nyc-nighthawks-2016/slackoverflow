@@ -20,7 +20,11 @@ body {
 }
 
 .navbar-item {
-    float: right;
+  float: right;
+}
+
+.slack-navbar-item {
+  float: left;
 }
 
 .navbar-link {
@@ -31,13 +35,11 @@ body {
   font-size: 13px;
   padding: 10px;
   font-family: Arial,"Helvetica Neue",Helvetica,sans-serif !important;
-
 }
 
 .navbar-link:hover {
   color: blue;
   background-color: lightblue;
-
 }
 
 #cookie-monster {
@@ -94,7 +96,7 @@ a {
   cursor: pointer
 }
 
-nav ul {
+ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -105,44 +107,33 @@ nav ul {
   border-radius: 3px;
 }
 
-nav li {
+li {
   float: left;
 }
 
-nav #login {
+#login {
   border-right: 1px solid #ddd;
   box-shadow: 1px 0 0 #fff;
 }
 
-nav #login-trigger,
-nav #signup a {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-  height: 25px;
-  line-height: 25px;
-  font-weight: bold;
-  padding: 0 8px;
+#login-trigger,
+#signup a {
+  display: block;
+  text-align: center;
   text-decoration: none;
-  color: #444;
-  text-shadow: 0 1px 0 #fff;
+  color: #eeeeee;
+  font-size: 13px;
+  padding: 10px;
+  font-family: Arial,"Helvetica Neue",Helvetica,sans-serif !important;
 }
 
-nav #signup a {
+
+#signup a {
   border-radius: 0 3px 3px 0;
 }
 
-nav #login-trigger {
-  border-radius: 3px 0 0 3px;
-}
 
-nav #login-trigger:hover,
-nav #login .active,
-nav #signup a:hover {
-  background: #fff;
-}
-
-nav #login-content {
+#login-content {
   display: none;
   position: absolute;
   top: 24px;
@@ -155,9 +146,10 @@ nav #login-content {
   border-radius: 3px 0 3px 3px;
 }
 
-nav li #login-content {
+li #login-content {
   right: 0;
   width: 250px;
+  background: rgba(12,13,14,0.86);
 }
 
 /*--------------------*/
