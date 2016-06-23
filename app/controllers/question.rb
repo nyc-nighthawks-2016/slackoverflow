@@ -25,6 +25,19 @@ get '/questions/:id' do
   erb :'questions/show'
 end
 
+post '/questions/:id' do
+  current_question = Question.find(params[:id])
+  new_answer = current_question.answers.new(user: current_user, answer: params[:answer])
+  @question = Question.find(params[:id])
+  @question_author = User.find(@question.user_id)
+      if new_answer.save
+        redirect "/questions/#{current_question.id}"
+      else
+        @errors = new_answer.errors.full_messages
+        erb :'/questions/show'
+      end
+end
+
 post '/questions/:id/upvote' do
   # if request.xhr?
   # else
@@ -83,4 +96,29 @@ post '/answers/:id/downvote' do
 	  # end
 	end
 	redirect "/questions/#{@question.id}"
+end
+
+post '/questions/:id/comments/new' do
+  @question = Question.find(params[:id])
+  new_comment = @question.comments.new(user: current_user, comment: params[:comment])
+  @question_author = User.find(@question.user_id)
+      if new_comment.save
+        redirect "/questions/#{@question.id}"
+      else
+        @errors = new_comment.errors.full_messages
+        erb :'/questions/show'
+      end
+end
+
+post '/questions/:q_id/answers/:id/comments/new' do
+  @question = Question.find(params[:q_id])
+  @answer = Answer.find(params[:id])
+  new_comment = @answer.comments.new(user: current_user, comment: params[:comment])
+  @question_author = User.find(@question.user_id)
+      if new_comment.save
+        redirect "/questions/#{@question.id}"
+      else
+        @errors = new_comment.errors.full_messages
+        erb :'/questions/show'
+      end
 end
