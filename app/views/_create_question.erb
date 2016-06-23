@@ -1,0 +1,11 @@
+<table>
+  <tr>
+    <td><%=question.votes.length%>|</td>
+    <td><%=question.answers.length%>|</td>
+    <td><li class="question-listing"><a class="question-hyperlink" href="/questions/<%= question.id %>"><%= question.title %></a></li></td>
+  </tr>
+  <tr>
+    <td><%=question.user.username%></td>
+    <td><%=time_since_creation(question)%> minutes ago</td>
+  </tr>
+</table>

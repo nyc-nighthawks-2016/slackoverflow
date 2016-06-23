@@ -1,10 +1,21 @@
+
+  <% if @errors %>
+  <% @errors.each do |error| %>
+  <div><%= error.full_message %></div>
+  <% end %>
+  <% end %>
+
 <header>
   <h1>SlackOverflow</h1>
   <p id="tabs">
     <a href="#posts">latest</a>
     <a href="#">comments</a>
     <a href="#">popular</a>
-    <a href="#posts">add new question</a>
+    <% if logged_in? %>
+    <a href="#question-form">add new question</a>
+    <% else %>
+    <a href="/sessions/login">add new question</a>
+    <% end %>
   </p>
 </header>
 
@@ -15,7 +26,7 @@
 
 			<div class="summary-container">
 				<a class="question-hyperlink" href="/questions/<%= question.id %>"><%= question.title %></a>
-				
+
 				<p class="question-text">
 					<% if question.question.length > 200 %>
 						<% text = question.question[0...200]+" ..." %>
@@ -25,6 +36,10 @@
 					<%= text %>
 				</p>
 			</div>
+
+      <div><%=question.user.username%></div>
+      <div><%=time_since_creation(question)%> minutes ago</div>
+
 			<div class="counts-container">
 				<div class="votes">
 					<div class="count"><%= question.votes.length %></div>
@@ -36,13 +51,20 @@
 					<div>answers</div>
 				</div>
 			</div>
-			
+
 		</div>
 	<% end %>
 </div>
-
-
-<form id="posts" method="post" action="/posts">
-  <input type="text" name="title" placeholder="title">
-  <input type="submit" value="submit new question">
+<% if logged_in? %>
+<div id="question-form">
+<form id="question" method="post" action="/">
+<table>
+  <tr><td>Title:</td></tr>
+  <tr><td><input type="text" name="title" placeholder="title"/></td></tr>
+  <tr><td>Body:</td></tr>
+  <tr><td><textarea rows="7" cols="50" name="question" placeholder="Enter your description..."></textarea></td></tr>
+  <tr><td><input type="submit" value="Submit Question!"></td></tr>
+</table>
 </form>
+</div>
+<% end %>

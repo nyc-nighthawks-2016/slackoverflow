@@ -24,13 +24,36 @@
   <ul id="navbar">
     <li id="logo "class="navbar-item"><a  href="/"><img id="cookie-monster" src="/images/cookie-monster.jpg"></a></li>
     <% if !logged_in? %>
-      <li class="navbar-item"><a class="navbar-link" href="/sessions/login">login</a></li>
+      <li class="navbar-item">
+        <a class="navbar-link" id="login-trigger" href="/sessions/login">login <span>▼</span></a>
+      <div id="login-content">
+        <% if @errors %>
+        <% @errors.each do |error| %>
+        <ul>
+          <li><%= error %></li>
+          <% end %>
+        </ul>
+        <% end %>
+          <form id="drop-login" method="post", action="/sessions/login">
+          <fieldset id="inputs">
+            <input id="username" type="email" name="email" placeholder="Your email address" required>
+            <input id="password" type="password" name="password" placeholder="Password" required>
+          </fieldset>
+          <fieldset id="actions">
+            <input type="submit" id="submit" value="Log in">
+            <label><input type="checkbox" checked="checked"> Keep me signed in</label>
+          </fieldset>
+        </form>
+        </div>
+      </li>
+
       <li class="navbar-item"><a class="navbar-link" href="/users/new">register</a></li>
+
     <% else %>
      <li class="navbar-item"><a class="navbar-link" href="/users/<%=current_user.id%>"><%=current_user.username%></a></li>
      <li class="navbar-item"><a class="navbar-link" href="/sessions/logout">Logout</a></li>
       <% end %>
-    <li id="logo "class="navbar-item"><a class="navbar-link" href="/">SlackOverflow</a></li>
+    <li id="logo "class="slack-navbar-item"><a class="navbar-link" href="/">SlackOverflow</a></li>
   </ul>
 
   <nav id="sorting">

@@ -5,20 +5,40 @@ get '/sessions/login' do
 end
 
 post '/sessions/login' do
-  @user = User.find_by(email: params[:email])
-  if @user
-    if @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect '/'
+  if request.xhr?
+    # binding.pry
+    @user = User.find_by(email: request[:email])
+    # binding.pry
+    if @user
+      if @user.authenticate(request[:password])
+        session[:user_id] = @user.id
+        status 200
+        '/'
+      else
+        status 422
+        @errors = @user.errors.full_messages
+      end
     else
-      # binding.pry
-      @errors = @user.errors.full_messages
-      erb :'sessions/login'
+      status 422
+      @errors = ['User does not exist!!!']
     end
-  else
-    @errors = ['User does not exist!!!']
-    erb :'sessions/login'
+  # else
+  #   @user = User.find_by(email: params[:email])
+  #   if @user
+  #     if @user.authenticate(params[:password])
+  #       session[:user_id] = @user.id
+  #       redirect '/'
+  #     else
+  #       # binding.pry
+  #       @errors = @user.errors.full_messages
+  #       erb :'sessions/login'
+  #     end
+  #   else
+  #     @errors = ['User does not exist!!!']
+  #     erb :'sessions/login'
+  #   end
   end
+
 end
 
 #User Logout
