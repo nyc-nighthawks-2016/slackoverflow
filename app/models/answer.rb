@@ -8,7 +8,7 @@ class Answer < ActiveRecord::Base
 
   def vote_count
     # get all votes for this answer
-    votes = Vote.where(votable_type: "answer", votable_id: self.id).to_a
+    votes = Vote.where(votable_type: "Answer", votable_id: self.id).to_a
     # sum all values of votes
     sum = 0
     votes.each do |vote|
