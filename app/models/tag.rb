@@ -43,4 +43,11 @@ class Tag < ActiveRecord::Base
     all_tagged.length
   end
 
+  #gives array from newest to oldest
+  def self.newest
+    the_class = self.all.to_a
+    the_class.sort {|a,b| a.created_at.to_i <=> b.created_at.to_i}
+  end
+
+
 end

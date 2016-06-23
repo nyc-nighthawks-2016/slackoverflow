@@ -16,14 +16,14 @@
     <div>
         <%@tags.each do |tag|%>
           <p><a href='/tags/<%=tag.id%>'><%=tag.subject%></a> x <%=tag.tag_used%></p>
-          <!-- <p class="question-text">
+          <p class="question-text">
             <% if tag.summary.length > 200 %>
               <% text = tag.summary[0...200]+" ..." %>
             <% else %>
               <% text = tag.summary %>
             <% end %>
             <%= text %>
-          </p><br> -->
+          </p>
           <p><%=tag.tag_used_today%> asked today, <%=tag.tag_used_this_week%> this week</p><br>
         <%end%>
     </div>
