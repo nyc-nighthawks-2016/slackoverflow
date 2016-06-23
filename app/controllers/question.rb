@@ -56,6 +56,7 @@ post '/questions/:id/downvote' do
   # if request.xhr?
   # else
   @question = Question.find(params[:id])
+  # binding.pry
 	@question_author = User.find(@question.user_id)
   if session[:user_id]
 	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
