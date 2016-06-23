@@ -1,11 +1,38 @@
-<table>
-  <tr>
-    <td><%=question.votes.length%>|</td>
-    <td><%=question.answers.length%>|</td>
-    <td><li class="question-listing"><a class="question-hyperlink" href="/questions/<%= question.id %>"><%= question.title %></a></li></td>
-  </tr>
-  <tr>
-    <td><%=question.user.username%></td>
-    <td><%=time_since_creation(question)%> minutes ago</td>
-  </tr>
-</table>
+<div class="question-listing">
+
+      <div class="summary-container">
+        <a class="question-hyperlink" href="/questions/<%= question.id %>"><%= question.title %></a>
+
+        <p class="question-text">
+          <% if question.question.length > 200 %>
+            <% text = question.question[0...200]+" ..." %>
+          <% else %>
+            <% text = question.question %>
+          <% end %>
+          <%= text %>
+        </p>
+
+        <div class="time">
+          <%=time_since_creation(question)%> minutes ago
+        </div>
+        <div class="username">
+          Created by: <a href="users/<%=question.user.id%>"><%=question.user.username%></a>
+        </div>
+      </div>
+
+      <div class="counts-container">
+        <div class="votes">
+          <div class="count"><%= question.votes.length %></div>
+          <div>votes</div>
+        </div>
+
+        <div class="answers">
+          <div class="count"><%= question.answers.length %></div>
+          <div>answers</div>
+        </div>
+
+
+        </div>
+      </div>
+
+    </div>

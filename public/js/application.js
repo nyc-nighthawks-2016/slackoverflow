@@ -36,21 +36,21 @@ $(document).ready(function(){
 
     $('#question').on('submit', function(e) {
       e.preventDefault();
-
+      // debugger
       var title = $('input[name=title]');
       var question = $('textarea[name=question]');
 
       $.ajax({
-      url: $(this).attr('action'),
-      method: $(this).attr('method'),
-      data: $(this).serialize()
+        url: $(this).attr('action'),
+        method: $(this).attr('method'),
+        data: $(this).serialize()
       })
       .done(function(response) {
-      $('ul').append(response);
-      // debugger
-      $(title).val('');
-      $(question).val('');
-      $('#question').find('input[name=title]').focus();
+        // debugger;
+        $('.questions-list').append(response);
+        $(title).val('');
+        $(question).val('');
+        $('#question').find('input[name=title]').focus();
       })
       .fail(function(error){
         $('#posts').prepend('<li id="error">'+error.responseText+'</li>');

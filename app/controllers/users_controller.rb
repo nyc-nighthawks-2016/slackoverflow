@@ -17,7 +17,6 @@ end
 
 get '/users' do
   @users = User.all
-
   erb :'users/index'
 end
 
@@ -31,6 +30,5 @@ get '/users/:id' do
   @questions = @user.questions
   @answers = @user.answers
   @comments = @user.comments
-
   erb :'users/show'
 end

@@ -14,12 +14,6 @@ post '/' do
         status 422
       end
     else
-      new_question = current_user.questions.new(params)
-      if new_question.save
-        redirect '/'
-      else
-        @errors = new_question.errors.full_messages
-        erb :'_create_question'
-      end
+      redirect '/questions/new'
     end
 end
