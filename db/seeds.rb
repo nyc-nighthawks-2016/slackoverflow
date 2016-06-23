@@ -13,6 +13,7 @@ Question.delete_all
 Answer.delete_all
 Comment.delete_all
 Tag.delete_all
+Vote.delete_all
 
 20.times do
   first_name = Faker::Name.first_name
@@ -62,31 +63,11 @@ end
 
 question = Question.find(1)
 Vote.create!(user_id: question.user_id, votable_id: 1, votable_type: "question", vote_value: 1)
-# 40.times do
-#   Tag.create!({subject: Faker::Superhero.name})
-# end
+40.times do
+  Tag.create!({subject: Faker::Superhero.name})
+end
 
 
-# 10.times do
-#     Question.find(rand(1..20)).tags << Tag.find(rand(1..40))
-# end
-
-
-
-# #Votes
-# value = [-1, 1]
-# 40.times do
-#   Vote.create!({
-#                    vote_value: value.sample,
-#                    user_id: rand(1..20),
-#                    votable_id: rand(1..20),
-#                    votable_type: "question"})
-# end
-
-# 40.times do
-#   Vote.create!({
-#                    vote_value: value.sample,
-#                    user_id: rand(1..20),
-#                    votable_id: rand(1..40),
-#                    votable_type: "answer"})
-# end
+10.times do
+    Question.find(rand(1..20)).tags << Tag.find(rand(1..40))
+end
