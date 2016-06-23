@@ -13,6 +13,19 @@ post '/users' do
       @errors = @user.errors.full_messages
       erb :'users/new'
     end
-
 end
 
+get '/users' do
+  @users = User.all
+
+  erb :'users/index'
+end
+
+get '/users/:id' do
+  @user = User.find(params[:id])
+  @questions = @user.questions
+  @answers = @user.answers
+  @comments = @user.comments
+
+  erb :'users/show'
+end
