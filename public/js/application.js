@@ -59,6 +59,19 @@ $(document).ready(function(){
       });
     });
 
+    $('.question-link').on('click', function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('href'),
+        method: 'get'
+      })
+      .done(function(response) {
+        $('#partial-container').html(response);
+        // $(document).on('change', '#partial-container', function() {
+        //   $('#partial-container').html(response);
+      
+      });
+    });
     // $('.upvote').on('submit', function(e) {
     //   e.preventDefault();
     //   debugger
