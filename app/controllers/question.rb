@@ -35,43 +35,44 @@ post '/questions/:id/upvote' do
   # if request.xhr?
   # else
   @question = Question.find(params[:id])
-  @question_author = User.find(@question.user_id)
-  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
-  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: 1)
-  end
-  @question = Question.find(params[:id])
-  @question_author = User.find(@question.user_id)
-  erb :'questions/show'
-  # end
+	@question_author = User.find(@question.user_id)
+  if session[:user_id]
+	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+	  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: 1)
+	  end
+	  # end
+	end
+	erb :'questions/show'
 end
 
 post '/questions/:id/downvote' do
   # if request.xhr?
   # else
   @question = Question.find(params[:id])
-  @question_author = User.find(@question.user_id)
-  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
-  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: -1)
-  end
-  @question = Question.find(params[:id])
-  @question_author = User.find(@question.user_id)
-  erb :'questions/show'
-  # end
+	@question_author = User.find(@question.user_id)
+  if session[:user_id]
+	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+	  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: -1)
+	  end
+	  # end
+	end
+	erb :'questions/show'
 end
 
 
 post '/answers/:id/upvote' do
   # if request.xhr?
   # else
-
   answer = Answer.find(params[:id])
-  @question = answer.question
-  @question_author = User.find(@question.user_id)
-  unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
-  	Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: 1)
-  end
-  erb :'questions/show'
-  # end
+	@question = answer.question
+	@question_author = User.find(@question.user_id)
+  if session[:user_id]
+	  unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
+	  	Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: 1)
+	  end
+	  # end
+	end
+	erb :'questions/show'
 end
 
 
@@ -79,13 +80,15 @@ post '/answers/:id/downvote' do
   # if request.xhr?
   # else
   answer = Answer.find(params[:id])
-  @question = answer.question
-  @question_author = User.find(@question.user_id)
-  unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
-  	Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: -1)
-  end
-  erb :'questions/show'
-  # end
+	@question = answer.question
+	@question_author = User.find(@question.user_id)
+  if session[:user_id]
+	  unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
+	  	Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: -1)
+	  end
+	  # end
+	end
+	erb :'questions/show'
 end
 
 
