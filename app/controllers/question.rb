@@ -9,8 +9,8 @@ post '/questions/:id/upvote' do
   # else
   @question = Question.find(params[:id])
   @question_author = User.find(@question.user_id)
-  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "question")
-  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "question", vote_value: 1)
+  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: 1)
   end
   @question = Question.find(params[:id])
   @question_author = User.find(@question.user_id)
@@ -23,11 +23,13 @@ post '/questions/:id/downvote' do
   # else
   @question = Question.find(params[:id])
   @question_author = User.find(@question.user_id)
-  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "question")
-  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "question", vote_value: -1)
+  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: -1)
   end
   @question = Question.find(params[:id])
   @question_author = User.find(@question.user_id)
   erb :'questions/show'
   # end
 end
+
+
