@@ -20,12 +20,18 @@ end
 
 get '/popular' do
 	@questions = Question.order(view_count: :desc)
-
-	erb :'tabs/popular'
+	if request.xhr?
+		erb :'tabs/popular', layout: false, locals: {questions: @questions}
+	else
+		erb :'tabs/popular'
+	end
 end
 
 get '/newest' do
 	@questions = Question.order(created_at: :desc)
-
-	erb :'tabs/newest'
+	if request.xhr?
+		erb :'tabs/newest', layout: false, locals: {questions: @questions}
+	else
+		erb :'tabs/newest'
+	end
 end

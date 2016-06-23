@@ -5,22 +5,22 @@
   <% end %>
   <% end %>
 
-<header>
-  <h1>SlackOverflow</h1>
-  <p id="tabs">
-    <a href="#">latest</a>
-    <a href="#">comments</a>
-    <a href="#">popular</a>
-    <% if logged_in? %>
-    <a href="#question-form">Ask Question</a>
-    <% else %>
-    <a href="/sessions/login">Ask Question</a>
-    <% end %>
-  </p>
-</header>
-
 <h2>All Questions</h2>
+  <header>
+    <p id="tabs">
+      <a class="question-link" href="/newest">newest</a>
+      <a href="#">comments</a>
+      <a class="question-link" href="/popular">popular</a>
+      <% if logged_in? %>
+      <a href="#question-form">Ask Question</a>
+      <% else %>
+      <a href="/sessions/login">Ask Question</a>
+      <% end %>
+    </p>
+  </header>
+<container id="partial-container">
 <%= erb(:question_list_partial, :locals => { :questions => @questions })%>
+</container>
 
 <% if logged_in? %>
   <div id="question-form">
