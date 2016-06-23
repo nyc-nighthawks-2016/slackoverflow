@@ -16,9 +16,18 @@ post '/questions' do
       end
 end
 
+# get '/questions/:id' do
+#   @question = Question.find(params[:id])
+#   @question_author = User.find(@question.user_id)
+#   erb :'questions/show'
+# end
+
 get '/questions/:id' do
   @question = Question.find(params[:id])
   @question_author = User.find(@question.user_id)
+  view_count = @question.view_count
+  view_count += 1
+  @question.update_attributes(view_count: view_count)
   erb :'questions/show'
 end
 
