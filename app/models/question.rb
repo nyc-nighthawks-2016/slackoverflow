@@ -10,7 +10,7 @@ class Question < ActiveRecord::Base
 
   def vote_count
     # get all votes for this answer
-    votes = Vote.where(votable_type: "question", votable_id: self.id).to_a
+    votes = Vote.where(votable_type: "Question", votable_id: self.id).to_a
     # sum all values of votes
     # votes.reduce{ |sum, vote| sum + vote.vote_value }
     sum = 0

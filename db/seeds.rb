@@ -62,7 +62,8 @@ end
 end
 
 question = Question.find(1)
-Vote.create!(user_id: question.user_id, votable_id: 1, votable_type: "question", vote_value: 1)
+
+Vote.create!(user_id: question.user_id, votable_id: 1, votable_type: "Question", vote_value: 1)
 40.times do
   Tag.create!({subject: Faker::Superhero.name})
 end
