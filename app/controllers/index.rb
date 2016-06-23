@@ -19,7 +19,7 @@ post '/' do
         redirect '/'
       else
         @errors = new_question.errors.full_messages
-        erb :'/_create_question'
+        erb :'_create_question'
       end
     end
 end
