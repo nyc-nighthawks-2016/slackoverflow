@@ -20,16 +20,18 @@
   <title></title>
 </head>
 <body>
-  <nav id="navbar">
-    <a href="/">SlackOverflow</a>
+  <div class="background"><img src="images/background.jpg"></div>
+  <ul id="navbar">
+    <li id="logo "class="navbar-item"><a  href="/"><img id="cookie-monster" src="/images/cookie-monster.jpg"></a></li>
     <% if !logged_in? %>
-      <a href="/sessions/login">login</a>
-      <a href="/users/new">register</a>
+      <li class="navbar-item"><a class="navbar-link" href="/sessions/login">login</a></li>
+      <li class="navbar-item"><a class="navbar-link" href="/users/new">register</a></li>
     <% else %>
-      <a href="/users/<%=current_user.id%>"><%=current_user.username%></a>
-      <a href="/sessions/logout">Logout</a>
+     <li class="navbar-item"><a class="navbar-link" href="/users/<%=current_user.id%>"><%=current_user.username%></a></li>
+     <li class="navbar-item"><a class="navbar-link" href="/sessions/logout">Logout</a></li>
       <% end %>
-  </nav>
+    <li id="logo "class="navbar-item"><a class="navbar-link" href="/">SlackOverflow</a></li>
+  </ul>
 
   <nav id="sorting">
     <a href="">Questions</a>
