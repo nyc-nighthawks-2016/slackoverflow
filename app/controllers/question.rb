@@ -16,12 +16,6 @@ post '/questions' do
       end
 end
 
-# get '/questions/:id' do
-#   @question = Question.find(params[:id])
-#   @question_author = User.find(@question.user_id)
-#   erb :'questions/show'
-# end
-
 get '/questions/:id' do
   @question = Question.find(params[:id])
   @question_author = User.find(@question.user_id)
@@ -42,7 +36,7 @@ post '/questions/:id/upvote' do
 	  end
 	  # end
 	end
-	erb :'questions/show'
+  redirect "/questions/#{params[:id]}"
 end
 
 post '/questions/:id/downvote' do
@@ -56,7 +50,7 @@ post '/questions/:id/downvote' do
 	  end
 	  # end
 	end
-	erb :'questions/show'
+	redirect "/questions/#{params[:id]}"
 end
 
 
@@ -72,7 +66,7 @@ post '/answers/:id/upvote' do
 	  end
 	  # end
 	end
-	erb :'questions/show'
+  redirect "/questions/#{@question.id}"
 end
 
 
@@ -88,7 +82,5 @@ post '/answers/:id/downvote' do
 	  end
 	  # end
 	end
-	erb :'questions/show'
+	redirect "/questions/#{@question.id}"
 end
-
-
