@@ -1,8 +1,8 @@
 <h1>All Users</h1>
 
 
-<ul>
-  <% @users.each do |user| %>
-    <li><%= user.first_name %> <%= user.last_name %>, <a href="/users/<%= user.id %>"><%= user.username %></a></li>
-  <% end %>
-</ul>
+  <ul class="regular-list">
+    <% @users.each do |user| %>
+      <li class="each-user"><div class="user-box"><%= user.first_name %> <%= user.last_name %><br><a href="/users/<%= user.id %>"><%= user.username %></a></div></li>
+    <% end %>
+  </ul>

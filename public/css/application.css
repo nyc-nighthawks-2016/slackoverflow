@@ -284,3 +284,26 @@ li #login-content {
   margin-left: 20%;
 
 }
+
+.regular-list {
+  float: none;
+  text-align: center;
+  opacity: 1;
+  background: none;
+  border-style: none;
+}
+
+.each-user {
+  float: none;
+  display: inline;
+}
+
+.user-box {
+  max-width: 200px;
+  margin: 30px;
+  display: inline-block;
+}
+
+.regular-list-item {
+  float: none;
+}
