@@ -60,3 +60,33 @@ post '/questions/:id/downvote' do
 end
 
 
+post '/answers/:id/upvote' do
+  # if request.xhr?
+  # else
+
+  answer = Answer.find(params[:id])
+  @question = answer.question
+  @question_author = User.find(@question.user_id)
+  unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
+  	Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: 1)
+  end
+  erb :'questions/show'
+  # end
+end
+
+
+post '/answers/:id/downvote' do
+  # if request.xhr?
+  # else
+  binding.pry
+  answer = Answer.find(params[:id])
+  @question = answer.question
+  @question_author = User.find(@question.user_id)
+  unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
+  	Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: -1)
+  end
+  erb :'questions/show'
+  # end
+end
+
+
