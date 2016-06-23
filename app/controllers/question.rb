@@ -123,3 +123,24 @@ post '/questions/:q_id/answers/:id/comments/new' do
         erb :'/questions/show'
       end
 end
+
+
+# Adding edit and delete answer/comment functionality
+get '/questions/:id/edit' do
+  @question = Question.find(params[:id])
+  if current_user.id == @question.user_id
+    erb :'questions/edit'
+  else
+    redirect "/questions/#{@question.id}"
+  end
+end
+
+put '/questions/:id' do
+  question = Question.find(params[:id])
+  question.assign_attributes(params[:edit])
+  if question.save
+    redirect "/questions/#{question.id}"
+  else
+    @errors = question.errors.full_messages
+  end
+end

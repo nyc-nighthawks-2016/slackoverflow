@@ -9,6 +9,9 @@
 <!-- question body -->
 <h3>Question body</h3>
 <p><%=@question.question%></p>
+<% if current_user.id == @question.user_id %>
+  <a href="/questions/<%= @question.id %>/edit">Edit this post</a>
+<% end %>
 
 <!-- question votes -->
 <h3>Question votes</h3>
