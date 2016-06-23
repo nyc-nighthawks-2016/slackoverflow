@@ -41,6 +41,19 @@
 <%end%>
 </ul>
 </div>
+<div>
+Comment
+<% if @errors %>
+<%@errors.each do |error|%>
+<%=error%>
+<%end%>
+<%end%>
+<!-- question comment form -->
+<form action='/questions/<%=@question.id%>/comments/new' method='post'>
+  <input type="text" name="comment">
+  <input type="submit" value="Submit">
+</form>
+</div>
 <br>
 <div><%=@question.answers.length%> Answers</div><br>
 
@@ -63,6 +76,19 @@
 <li><a href='/users/<%=comment.user_id%>'><%=User.find(comment.user_id).first_name%></a></li>
 <li><%=comment.created_at%></li>
   <%end%>
+  <div>
+  Comment
+  <% if @errors %>
+  <%@errors.each do |error|%>
+  <%=error%>
+  <%end%>
+  <%end%>
+  <!-- question answer form -->
+  <form action='/questions/<%=@question.id%>/answers/<%=answer.id%>/comments/new' method='post'>
+    <input type="text" name="comment">
+    <input type="submit" value="Submit">
+  </form>
+  </div>
 <%end%>
 </ul>
 </div>
@@ -80,6 +106,5 @@ Your Answer
   <input type="text" name="answer">
   <input type="submit" value="Submit">
 </form>
-<br>
 </div>
 </div>

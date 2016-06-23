@@ -97,3 +97,28 @@ post '/answers/:id/downvote' do
 	end
 	redirect "/questions/#{@question.id}"
 end
+
+post '/questions/:id/comments/new' do
+  @question = Question.find(params[:id])
+  new_comment = @question.comments.new(user: current_user, comment: params[:comment])
+  @question_author = User.find(@question.user_id)
+      if new_comment.save
+        redirect "/questions/#{@question.id}"
+      else
+        @errors = new_comment.errors.full_messages
+        erb :'/questions/show'
+      end
+end
+
+post '/questions/:q_id/answers/:id/comments/new' do
+  @question = Question.find(params[:q_id])
+  @answer = Answer.find(params[:id])
+  new_comment = @answer.comments.new(user: current_user, comment: params[:comment])
+  @question_author = User.find(@question.user_id)
+      if new_comment.save
+        redirect "/questions/#{@question.id}"
+      else
+        @errors = new_comment.errors.full_messages
+        erb :'/questions/show'
+      end
+end
