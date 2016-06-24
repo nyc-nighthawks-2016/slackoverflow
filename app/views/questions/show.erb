@@ -8,11 +8,11 @@
     <!-- question votes -->
   <div class="question-vote-count">
     <form class="upvote" method='post' action="/questions/<%= @question.id %>/upvote">
-      <input type="submit" value="Up Vote">
+      <input type="submit" value="⬆">
     </form>
     <div class="vote-count"><%= @question.vote_count %></div>
     <form class="downvote" method='post' action="/questions/<%= @question.id %>/downvote">
-      <input type="submit" value="Down Vote">
+      <input type="submit" value="⬇">
     </form>
   </div>
 
@@ -68,7 +68,7 @@
     </ul>
   </div>
 
-  <div>
+  <div class="question-comment-css">
   Comment
     <% if @errors %>
       <%@errors.each do |error|%>
@@ -77,7 +77,7 @@
     <%end%>
   <!-- question comment form -->
     <form action='/questions/<%=@question.id%>/comments/new' method='post'>
-      <input type="text" name="comment">
+      <textarea rows="7" cols="150 "name="comment"></textarea>
       <input type="submit" value="Submit">
     </form>
   </div><br>
@@ -86,20 +86,20 @@
 
   <!-- question answers -->
   <h3>Answers</h3>
-  <div class='answers'>
+  <div class='question-answers'>
     <%@question.answers.each do |answer|%>
     <div class="answer-container">
       <div class='voting_box'>
         <form class="upvote" method='post' action="/answers/<%= answer.id %>/upvote">
-          <input type="submit" value="Up Vote">
+          <input type="submit" value="⬆">
         </form>
         <div class="vote-count"><%= answer.vote_count %></div>
         <form class="downvote" method='post' action="/answers/<%= answer.id %>/downvote">
-          <input type="submit" value="Down Vote">
+          <input type="submit" value="⬇">
         </form>
       </div>
       <div class="answer"><%= answer.answer %></div>
-      <div class='author'><a href='/users/<%= answer.user_id %>'><%= User.find(answer.user_id).first_name %></a></div>
+      <div class="author"><a href='/users/<%= answer.user_id %>'><%= User.find(answer.user_id).first_name %></a></div>
       <% if logged_in? %>
         <% if current_user.id == answer.user_id %>
           <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit your answer</a>
@@ -111,7 +111,7 @@
       <% end %>
 
   <!-- Comments to answers -->
-      <div class='answer_comments'>
+      <div class='answer-comments'>
         <%answer.comments.each do |comment|%>
         <ul>
           <li><%=comment.comment%></li>
@@ -128,7 +128,7 @@
             <% end %>
           <% end %>
         <%end%>
-        <div>
+        <div class="answer-comment-css">
           Comment
           <% if @errors %>
             <%@errors.each do |error|%>
@@ -138,19 +138,19 @@
 
           <!-- question answer form -->
           <form action='/questions/<%=@question.id%>/answers/<%=answer.id%>/comments/new' method='post'>
-            <input type="text" name="comment">
+            <textarea rows="7" cols="100" name="comment"></textarea>
             <input type="submit" value="Submit">
           </form>
           </div>
         </div>
       </div>
     <%end%>
-    
+
   </div>
 
 
   <br>
-            <div>
+            <div class="your-answer">
             Your Answer
             <% if @errors %>
             <%@errors.each do |error|%>
@@ -159,7 +159,7 @@
             <%end%>
             <!-- question answer form -->
             <form action='/questions/<%=@question.id%>' method='post'>
-              <input type="text" name="answer">
+              <textarea rows="7" cols="50" name="answer"></textarea>
               <input type="submit" value="Submit">
             </form>
             </div>

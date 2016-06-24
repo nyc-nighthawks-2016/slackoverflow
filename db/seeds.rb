@@ -39,7 +39,7 @@ end
 
 40.times do
   Answer.create!({
-                  answer: Faker::Company.catch_phrase,
+                  answer: Faker::Hipster.paragraphs,
                   user_id: rand(1..20),
                   question_id: rand(1..20)
                   })
