@@ -3,13 +3,7 @@ get '/tags' do
   erb :'tags/index'
 end
 
-get '/tags/:id' do
-  @tag = Tag.find(params[:id])
-  @questions = @tag.questions
-  erb :'tags/show'
-end
-
-get '/new_tags' do
+get '/tags/new_tags' do
 	@tags = Tag.newest
 	if request.xhr?
 		erb :'tags/new', layout: false, locals: { tags: @tags }
@@ -18,7 +12,7 @@ get '/new_tags' do
 	end
 end
 
-get '/pop_tags' do
+get '/tags/pop_tags' do
 	@tags = Tag.all.sort {|a,b| b.tag_used <=> a.tag_used}
 	if request.xhr?
 		erb :'tags/pop', layout: false, locals: { tags: @tags }
@@ -27,11 +21,17 @@ get '/pop_tags' do
 	end
 end
 
-get '/tag_names' do
+get '/tags/tag_names' do
 	@tags = Tag.alphabetize
 	if request.xhr?
 		erb :'tags/name', layout: false, locals: { tags: @tags }
 	else
 		erb :'tags/name'
 	end
+end
+
+get '/tags/:id' do
+  @tag = Tag.find(params[:id])
+  @questions = @tag.questions
+  erb :'tags/show'
 end

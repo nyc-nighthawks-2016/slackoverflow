@@ -3,7 +3,7 @@
       <p><a href='/tags/<%=tag.id%>'><%=tag.subject%></a> x <%=tag.tag_used%></p>
       <p class="question-text">
         <% if tag.summary.length > 200 %>
-          <% text = tag.summary[0...200]+" ..." %>
+          <% text = tag.summary[0...50]+" ..." %>
         <% else %>
           <% text = tag.summary %>
         <% end %>
