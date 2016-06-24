@@ -360,12 +360,16 @@ li #login-content {
 .each-user {
   float: none;
   display: inline;
+  color: red;
+  text-align: center;
 }
 
 .user-box {
   max-width: 200px;
   margin: 30px;
   display: inline-block;
+  border: 1px solid blue;
+  padding: 20px;
 }
 
 .regular-list-item {
@@ -393,3 +397,10 @@ li #login-content {
   margin-top: 10px;
 }
 /*CSS FOR EDITING QUESTIONS/ANSWERS/COMMENTS ENDS HERE */
+
+/* CENTER USERS PAGE */
+.all-users-header {
+  text-align: center;
+  font-size: 40px;
+  color: green;
+}
