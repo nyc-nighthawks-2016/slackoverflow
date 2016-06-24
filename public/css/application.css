@@ -2,16 +2,39 @@ body {
   position: relative;
 }
 
-#homepageheader {
-  font-family: optima;
+#mainheader {
+  margin-left: 20px;
 }
 
+#homepageheader {
+  font-family: optima;
+  margin-left: 20px;
+}
 
+#sorting {
+  float: right;
+  margin-right: -100px;
+  width: 500px;
+}
+
+#mainlink {
+  border: 1px rgba(12,13,14,0.86) solid;
+  background-color: rgba(12,13,14,0.86);
+  border-radius: 5px;
+  border-spacing: 2%;
+  margin: 2%;
+  padding: 2%;
+}
+
+#link-styling {
+
+  color: white;
+}
 
 .tabs {
   float: right;
   border-bottom: 1px solid #ccc;
-  width: 50%;
+  width: 35%;
   margin-bottom: 50px;
   list-style: none;
 
@@ -27,7 +50,7 @@ body {
 }
 
 .tabs li a {
-  color: rgba(12,13,14,0.86)
+  color: rgba(12,13,14,0.86);
   font-family: Helvetica, Arial, sans-serif;
   text-decoration: none;
 

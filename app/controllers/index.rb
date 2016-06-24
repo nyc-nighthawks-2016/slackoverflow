@@ -35,3 +35,22 @@ get '/newest' do
 		erb :'tabs/newest'
 	end
 end
+
+get '/comments' do
+
+  @questions = Question.all.sort {|x, y| y.comments.length <=> x.comments.length}
+  if request.xhr?
+    erb :'tabs/comments', layout: false, locals: {questions: @questions}
+  else
+    erb :'tabs/comments'
+  end
+end
+
+get '/questionstab' do
+  @questions = Question.all
+  if request.xhr?
+    erb :'tabs/questions', layout: false, locals: {questions: @questions}
+  else
+    erb :'tabs/questions'
+  end
+end
