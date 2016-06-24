@@ -1,10 +1,11 @@
-<h1><%= @user.first_name %> <%= @user.last_name %></h1>
-<p>
-  Account created on <%= @user.created_at %>
-</p>
-<p>
+<h1 class="user-full-name"><%= @user.first_name %> <%= @user.last_name %></h1>
+<p class="profile-views">
   Profile views: <%= @user.view_count %>
 </p>
+<p class="account-created">
+  Account created on <%= @user.created_at %>
+</p>
+
 
 <div class="">
   <p>

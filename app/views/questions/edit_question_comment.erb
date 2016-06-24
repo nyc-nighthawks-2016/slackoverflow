@@ -7,9 +7,9 @@
   </ul>
 <% end %>
 
-<h1>Edit your comment</h1>
-<form class="" action="/questions/<%= @question.id %>/comments/<%= @comment.id %>" method="post">
+<h1 class="edit-header">Edit your comment</h1>
+<form class="edit-forms" action="/questions/<%= @question.id %>/comments/<%= @comment.id %>" method="post">
   <input type="hidden" name="_method" value="put">
-  <textarea name="new_comment"><%= @comment.comment %></textarea><br>
+  <textarea rows="6" columns="200" class="edit-text" name="new_comment"><%= @comment.comment %></textarea><br>
   <input type="submit" value="Update your comment">
 </form>

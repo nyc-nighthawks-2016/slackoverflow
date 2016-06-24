@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Please log in to your account!</h1><br>
+  <h1 class="register-login-header">Please log in to your account!</h1><br>
 
   <% if @errors %>
   <% @errors.each do |error| %>
@@ -9,8 +9,8 @@
   </ul>
   <% end %>
 
-  <form action="/sessions/login" method="post">
-    <table>
+  <form class="edit-forms" action="/sessions/login" method="post">
+    <table class="edit-forms">
       <tr>
         <td><label for="email">Email:</label></td>
         <td>&nbsp;&nbsp;&nbsp;</td>
