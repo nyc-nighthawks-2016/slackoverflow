@@ -5,9 +5,22 @@
 
   <!-- vote forms and count -->
 
+    <!-- question votes -->
+  <div class="question-vote-count">
+    <form class="upvote" method='post' action="/questions/<%= @question.id %>/upvote">
+      <input type="submit" value="Up Vote">
+    </form>
+    <div class="vote-count"><%= @question.vote_count %></div>
+    <form class="downvote" method='post' action="/questions/<%= @question.id %>/downvote">
+      <input type="submit" value="Down Vote">
+    </form>
+  </div>
+
+
 
   <!-- question body -->
-  <h3>Question body</h3>
+  <h3>Question</h3>
+  <div class="question-body">
   <p><%=@question.question%></p>
 
   <p> Tags:
@@ -25,23 +38,10 @@
       </form>
     <% end %>
   <% end %>
-
-  <!-- question votes -->
-  <h3>Question votes</h3>
-  <div class="question-vote-count">
-    <form class="upvote" method='post' action="/questions/<%= @question.id %>/upvote">
-      <input type="submit" value="Up Vote">
-    </form>
-  	<div class="vote-count"><%= @question.vote_count %></div>
-    <form class="downvote" method='post' action="/questions/<%= @question.id %>/downvote">
-      <input type="submit" value="Down Vote">
-    </form>
   </div>
 
-
   <!-- question author -->
-  <h3>Question author</h3>
-  <div>
+  <div class="author">
     <a href="/users/<%= @question_author.id %>"><%= @question_author.first_name %></a>
   </div>
 

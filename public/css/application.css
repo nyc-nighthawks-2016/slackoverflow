@@ -292,13 +292,12 @@ li #login-content {
 }
 
 .answers {
-  text-align: center;
   display: inline-block;
   height: 38px;
   min-width: 38px;
   margin: 0 3px 0 0;
   font-size: 11px;
-  color: #848d95;
+  color: #black;
 }
 
 .question-count {
@@ -432,7 +431,7 @@ li #login-content {
 
 .answer {
   position: absolute;
-  left: 20%;
+  font-size: large;
 }
 
 .voting_box {
@@ -452,7 +451,7 @@ li #login-content {
   width: 50%;
 */
   text-align: left;
-
+  width: 80%;
   padding-bottom: 20px;
   padding-top: 10px;
 }
@@ -467,7 +466,7 @@ li #login-content {
     float: left;
 }
 .answer {
-  margin-left: 5%;
+  margin-left: 40%;
 }
 /*.clearfix{
     clear:both
@@ -479,7 +478,7 @@ li #login-content {
 }
 
 .author {
-  margin-bottom: 10px;
-  padding-top: 20px;
+/*  margin-bottom: 10px;
+  padding-top: 20px;*/
 }
 
