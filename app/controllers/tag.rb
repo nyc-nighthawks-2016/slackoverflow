@@ -48,7 +48,7 @@ end
 
 get '/tags/:id/votes' do
   @tag = Tag.find(params[:id])
-  @questions = @tag.questions.order(vote_count: :desc)
+  @questions = Question.popularity
   if request.xhr?
     erb :'tags/votes', layout: false, locals: { tag: @tag, questions: @questions }
   else

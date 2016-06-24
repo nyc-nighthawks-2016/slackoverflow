@@ -92,6 +92,7 @@ $(document).ready(function(){
       .done(function(response) {
         $('#each_tag_partials').html(response);
       });
+    });
 
     $('.question-vote-count').on('submit', 'form', function(e) {
       e.preventDefault();

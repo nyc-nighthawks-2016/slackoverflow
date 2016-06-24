@@ -54,4 +54,5 @@ class Tag < ActiveRecord::Base
     the_class = self.all.to_a
     the_class.sort_by { |tag| tag.subject.downcase }
   end
+
 end

@@ -19,4 +19,10 @@ class Question < ActiveRecord::Base
     end
     return sum
   end
+
+  def self.popularity
+    the_class = self.all.to_a
+    the_class.sort_by { |tag| tag.vote_count }.reverse
+  end
+
 end
