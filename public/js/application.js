@@ -73,7 +73,6 @@ $(document).ready(function(){
     });
 
     $('.tag-link').on('click', function(e) {
-      // debugger
       e.preventDefault();
       $.ajax({
         url: $(this).attr('href'),
@@ -83,7 +82,17 @@ $(document).ready(function(){
         $('#tag_partials').html(response);
       });
     });
-// Question Upvote AJAX functionality - CHECK
+
+    $('.each-tag-link').on('click', function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('href'),
+        method: 'GET'
+      })
+      .done(function(response) {
+        $('#each_tag_partials').html(response);
+      });
+    });
 
     $('.question-vote-count').on('submit', 'form', function(e) {
       e.preventDefault();
@@ -138,5 +147,6 @@ $(document).ready(function(){
         $(downVoteCount).html(response);
       });
     });
+
 
 });

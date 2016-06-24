@@ -36,13 +36,22 @@ get '/tags/:id' do
   erb :'tags/show'
 end
 
+get '/tags/:id/new' do
+  @tag = Tag.find(params[:id])
+  @questions = @tag.questions.order(created_at: :desc)
+  if request.xhr?
+    erb :'tags/new_q', layout: false, locals: { tag: @tag, questions: @questions }
+  else
+    erb :'tags/show'
+  end
+end
 
-# get '/tags/:id/votes' do
-#   @tag = Tag.find(params[:id])
-#   @questions = @tag.questions
-#   if request.xhr?
-#     erb :'tags/votes', layout: false, locals: { tags: @tags, :questions @questions }
-#   else
-#     erb :'tags/show'
-#   end
-# end
+get '/tags/:id/votes' do
+  @tag = Tag.find(params[:id])
+  @questions = Question.popularity
+  if request.xhr?
+    erb :'tags/votes', layout: false, locals: { tag: @tag, questions: @questions }
+  else
+    erb :'tags/show'
+  end
+end

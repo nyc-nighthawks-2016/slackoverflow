@@ -1,0 +1,47 @@
+<div class='container'>
+  <!-- question title -->
+
+<div class="questions-list">
+	<% @questions.each do |question| %>
+	<div class="question-listing">
+    <div class="summary-container">
+			<a class="question-hyperlink" href="/questions/<%= question.id %>"><%= question.title %></a>
+			<p class="question-text">
+				<% if question.question.length > 200 %>
+						<% text = question.question[0...200]+" ..." %>
+				<% else %>
+						<% text = question.question %>
+				<% end %>
+				<%= text %>
+			</p>
+
+      <div class="time">
+        <%=time_since_creation(question)%> minutes ago
+      </div>
+      <div class="username">
+        Created by: <a href="users/<%=question.user.id%>"><%=question.user.username%></a>
+      </div>
+		</div>
+
+		<div class="counts-container">
+			<div class="votes">
+				<div class="count"><%= question.votes.length %></div>
+					<div>votes</div>
+				</div>
+
+				<div class="answers">
+					<div class="count"><%= question.answers.length %></div>
+					<div>answers</div>
+				</div>
+
+        <div class="question-count">
+          <div class="count"><%= question.view_count %></div>
+          <div>views</div>
+        </div>
+
+      </div>
+		</div>
+	<% end %>
+    </div>
+  </div>
+</div>
