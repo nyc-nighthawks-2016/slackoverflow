@@ -462,3 +462,9 @@ li #login-content {
 .account-created {
   display: block;
 }
+
+.video {
+  margin-top: 5%;
+  margin-left: 10%;
+
+}
