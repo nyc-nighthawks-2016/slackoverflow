@@ -429,3 +429,57 @@ li #login-content {
 .account-created {
   display: block;
 }
+
+.answer {
+  position: absolute;
+  left: 20%;
+}
+
+.voting_box {
+
+}
+
+.answer-container {
+  position: relative;
+}
+
+
+
+.answer-container{
+  border-bottom: solid 1px grey;
+  margin-bottom: 20px;
+  /*margin: 0 auto;
+  width: 50%;
+*/
+  text-align: left;
+
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+
+
+.voting_box, .author{
+  margin-left: 20%;
+}
+
+.voting_box,.answer {
+    float: left;
+}
+.answer {
+  margin-left: 5%;
+}
+/*.clearfix{
+    clear:both
+}*/
+
+.answer_comments {
+  padding-top: 20px;
+  margin-left: 22%;
+}
+
+.author {
+  margin-bottom: 10px;
+  padding-top: 20px;
+}
+
