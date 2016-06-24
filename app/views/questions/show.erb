@@ -9,12 +9,14 @@
 <!-- question body -->
 <h3>Question body</h3>
 <p><%=@question.question%></p>
-<% if current_user.id == @question.user_id %>
-  <a href="/questions/<%= @question.id %>/edit">Edit this post</a>
-  <form class="" action="/questions/<%= @question.id %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete this post">
-  </form>
+<% if logged_in? %>
+  <% if current_user.id == @question.user_id %>
+    <a href="/questions/<%= @question.id %>/edit">Edit this post</a>
+    <form class="" action="/questions/<%= @question.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete this post">
+    </form>
+  <% end %>
 <% end %>
 
 <!-- question votes -->
@@ -46,12 +48,14 @@
       <li><%= comment.comment %></li>
       <li><a href='/users/<%= comment.user_id %>'><%= User.find(comment.user_id).first_name %></a></li>
       <li><%= comment.created_at %></li><br>
-      <% if current_user.id == comment.user_id %>
-        <a href="/questions/<%= @question.id %>/comments/<%= comment.id %>/edit">Edit this post</a>
-        <form class="" action="/questions/<%= @question.id %>/comments/<%= comment.id %>" method="post">
-          <input type="hidden" name="_method" value="delete">
-          <input type="submit" value="Delete this comment">
-        </form>
+      <% if logged_in? %>
+        <% if current_user.id == comment.user_id %>
+          <a href="/questions/<%= @question.id %>/comments/<%= comment.id %>/edit">Edit this post</a>
+          <form class="" action="/questions/<%= @question.id %>/comments/<%= comment.id %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete this comment">
+          </form>
+        <% end %>
       <% end %>
     <%end%>
   </ul>
@@ -89,13 +93,14 @@ Comment
     </div>
     <li><%= answer.answer %></li><br>
     <li><a href='/users/<%= answer.user_id %>'><%= User.find(answer.user_id).first_name %></a></li><br>
-
-    <% if current_user.id == answer.user_id %>
-      <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit your answer</a>
-      <form class="" action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Delete your answer">
-      </form>
+    <% if logged_in? %>
+      <% if current_user.id == answer.user_id %>
+        <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit your answer</a>
+        <form class="" action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete your answer">
+        </form>
+      <% end %>
     <% end %>
 
 <!-- Comments to answers -->
@@ -104,15 +109,15 @@ Comment
       <li><%=comment.comment%></li>
       <li><a href='/users/<%= comment.user_id %>'><%= User.find(comment.user_id).first_name %></a></li>
       <li><%=comment.created_at%></li>
-
-      <% if current_user.id == comment.user_id %>
-        <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments/<%= comment.id %>/edit">Edit your comment</a>
-        <form class="" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments/<%= comment.id %>" method="post">
-          <input type="hidden" name="_method" value="delete">
-          <input type="submit" value="Delete your comment">
-        </form>
+      <% if logged_in? %>
+        <% if current_user.id == comment.user_id %>
+          <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments/<%= comment.id %>/edit">Edit your comment</a>
+          <form class="" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments/<%= comment.id %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete your comment">
+          </form>
+        <% end %>
       <% end %>
-
   <%end%>
 
   <div>
