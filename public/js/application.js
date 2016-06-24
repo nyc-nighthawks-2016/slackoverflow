@@ -69,19 +69,67 @@ $(document).ready(function(){
         $('#partial-container').html(response);
         // $(document).on('change', '#partial-container', function() {
         //   $('#partial-container').html(response);
-      
+
       });
     });
-    // $('.upvote').on('submit', function(e) {
-    //   e.preventDefault();
-    //   debugger
-    //   $(this).parent().find('div[class=vote-count]');
-    //   $.ajax({
-    //     url: $(this).attr('action'),
-    //     method: $(this).attr('method')
-    //   })
-    //   .done(function(response) {
 
-    //   })
-    // })
+// Question Upvote AJAX functionality - CHECK
+
+    $('question-vote-count').find('.upvote').on('submit', function(e) {
+      e.preventDefault();
+      // debugger
+      var upVoteCount = $(this).parent().find('div[class=vote-count]');
+      $.ajax({
+        url: $(this).attr('action'),
+        method: $(this).attr('method')
+      })
+      .done(function(response) {
+        $(upVoteCount).html(response.votes);
+      });
+    });
+
+// Question Downvote AJAX functionality - CHECK
+
+    $('question-vote-count').find('.downvote').on('submit', function(e) {
+      e.preventDefault();
+      // debugger
+      var downVoteCount = $(this).parent().find('div[class=vote-count]');
+      $.ajax({
+        url: $(this).attr('action'),
+        method: $(this).attr('method')
+      })
+      .done(function(response) {
+        $(downVoteCount).html(response.votes);
+      });
+    });
+
+// Answer Upvote AJAX functionality - CHECK
+
+    $('voting_box').find('.upvote').on('submit', function(e) {
+      e.preventDefault();
+      // debugger
+      var upVoteCount = $(this).parent().find('div[class=vote-count]');
+      $.ajax({
+        url: $(this).attr('action'),
+        method: $(this).attr('method')
+      })
+      .done(function(response) {
+        $(upVoteCount).html(response.votes);
+      });
+    });
+
+// Answer Downvote AJAX functionality - CHECK
+
+    $('voting_box').find('.downvote').on('submit', function(e) {
+      e.preventDefault();
+      // debugger
+      var downVoteCount = $(this).parent().find('div[class=vote-count]');
+      $.ajax({
+        url: $(this).attr('action'),
+        method: $(this).attr('method')
+      })
+      .done(function(response) {
+        $(downVoteCount).html(response.votes);
+      });
+    });
 });
