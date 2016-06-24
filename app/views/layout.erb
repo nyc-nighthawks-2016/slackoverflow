@@ -20,7 +20,7 @@
   <title></title>
 </head>
 <body>
-  <div class="background"><img src="images/background.jpg"></div>
+  <div class="background"><img src="/images/background.jpg"></div>
   <ul id="navbar">
     <li id="logo "class="navbar-item"><a  href="/"><img id="cookie-monster" src="/images/cookie-monster.jpg"></a></li>
     <% if !logged_in? %>
@@ -56,16 +56,15 @@
     <li id="logo "class="slack-navbar-item"><a class="navbar-link" href="/">SlackOverflow</a></li>
   </ul>
 
-  <h1>SlackOverflow</h1>
+  <h1 id="mainheader">SlackOverflow</h1>
 
   <nav id="sorting">
-    <a href="/">Questions</a>
-    <a href="/tags">Tags</a>
-    <a href="/users">Users</a>
-    <a href="">Badges</a>
-
+    <span id="mainlink"><a id="link-styling" href="/">Questions</a></span>   |
+    <span id="mainlink"><a id="link-styling" href="/tags">Tags</a></span>   |
+    <span id="mainlink"><a id="link-styling" href="/users">Users</a></span>   |
+    <span id="mainlink"><a id="link-styling" href="">Badges</a></span>
   </nav>
-
+  <br><br>
 
   <%= yield %>
 </body>

@@ -5,19 +5,21 @@
   <% end %>
   <% end %>
 
-<h2>All Questions</h2>
+<h2 id="homepageheader">All Questions</h2>
   <header>
-    <p id="tabs">
-      <a class="question-link" href="/newest">newest</a>
-      <a href="#">comments</a>
-      <a class="question-link" href="/popular">popular</a>
+    <ul class="tabs">
+      <li class="active"><a class="question-link" href="/questionstab">questions</a></li>
+      <li><a class="question-link" href="/newest">newest</a></li>
+      <li><a class="question-link" href="/comments">comments</a></li>
+      <li><a class="question-link" href="/popular">popular</a></li>
       <% if logged_in? %>
-      <a href="#question-form">Ask Question</a>
+      <li><a href="#question-form">Ask Question</a></li>
       <% else %>
-      <a href="/sessions/login">Ask Question</a>
+      <li><a href="/sessions/login">Ask Question</a></li>
       <% end %>
-    </p>
+    </ul>
   </header>
+  <br><br><br><br><br>
 <container id="partial-container">
 <%= erb(:question_list_partial, :locals => { :questions => @questions })%>
 </container>
