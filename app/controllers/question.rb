@@ -46,7 +46,7 @@ post '/questions/:id/upvote' do
       unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
         Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: 1)
       end
-      # binding.pry
+      binding.pry
       content_type :json
       { id: request[:id], votes: @question.votes }.to_json
     end
