@@ -1,0 +1,15 @@
+<% if @errors %>
+  <span>Something went wrong:</span>
+  <ul class="error-list pad-b-2">
+    <% @errors.each do |error| %>
+      <li class="error-item"><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h1>Edit your answer</h1>
+<form class="" action="/questions/<%= @question.id %>/answers/<%= @answer.id %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <textarea name="new_answer"><%= @answer.answer %></textarea><br>
+  <input type="submit" value="Update your answer">
+</form>

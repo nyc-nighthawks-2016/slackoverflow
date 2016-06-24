@@ -9,6 +9,13 @@
 <!-- question body -->
 <h3>Question body</h3>
 <p><%=@question.question%></p>
+<% if current_user.id == @question.user_id %>
+  <a href="/questions/<%= @question.id %>/edit">Edit this post</a>
+  <form class="" action="/questions/<%= @question.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete this post">
+  </form>
+<% end %>
 
 <!-- question votes -->
 <h3>Question votes</h3>
@@ -25,60 +32,96 @@
 
 <!-- question author -->
 <h3>Question author</h3>
-<div><a href="/users/<%= @question_author.id %>"><%= @question_author.first_name %></a></div>
+<div>
+  <a href="/users/<%= @question_author.id %>"><%= @question_author.first_name %></a>
+</div>
 
-<ul>
+
 <!-- question comments -->
 <h3>Question comments</h3>
-<div><%@question.comments.each do |comment|%>
-<li><%=comment.comment%></li>
-<li><a href='/users/<%=comment.user_id%>'><%=User.find(comment.user_id).first_name%></a></li>
-<li><%=comment.created_at%></li><br>
-<%end%>
-</ul>
+
+<div>
+  <ul>
+    <%@question.comments.each do |comment|%>
+      <li><%= comment.comment %></li>
+      <li><a href='/users/<%= comment.user_id %>'><%= User.find(comment.user_id).first_name %></a></li>
+      <li><%= comment.created_at %></li><br>
+      <% if current_user.id == comment.user_id %>
+        <a href="/questions/<%= @question.id %>/comments/<%= comment.id %>/edit">Edit this post</a>
+        <form class="" action="/questions/<%= @question.id %>/comments/<%= comment.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete this comment">
+        </form>
+      <% end %>
+    <%end%>
+  </ul>
 </div>
+
 <div>
 Comment
-<% if @errors %>
-<%@errors.each do |error|%>
-<%=error%>
-<%end%>
-<%end%>
+  <% if @errors %>
+    <%@errors.each do |error|%>
+      <%=error%>
+    <%end%>
+  <%end%>
 <!-- question comment form -->
-<form action='/questions/<%=@question.id%>/comments/new' method='post'>
-  <input type="text" name="comment">
-  <input type="submit" value="Submit">
-</form>
+  <form action='/questions/<%=@question.id%>/comments/new' method='post'>
+    <input type="text" name="comment">
+    <input type="submit" value="Submit">
+  </form>
 </div>
 <br>
+
 <div><%=@question.answers.length%> Answers</div><br>
 
 <!-- question answers -->
 <h3>Answers</h3>
-<div class='answers'><%@question.answers.each do |answer|%>
-  <div class='voting_box'>
-  <form class="upvote" method='post' action="/answers/<%= answer.id %>/upvote">
-    <input type="submit" value="Up Vote">
-  </form>
-  <div class="vote-count"><%= answer.vote_count %></div>
-  <form class="downvote" method='post' action="/answers/<%= answer.id %>/downvote">
-    <input type="submit" value="Down Vote">
-  </form>
-  </div>
-<li><%=answer.answer%></li><br>
-<li><a href='/users/<%=answer.user_id%>'><%=User.find(answer.user_id).first_name%></a></li><br>
-<div class='answer_comments'><%answer.comments.each do |comment|%>
-<li><%=comment.comment%></li>
-<li><a href='/users/<%=comment.user_id%>'><%=User.find(comment.user_id).first_name%></a></li>
-<li><%=comment.created_at%></li>
+<div class='answers'>
+  <%@question.answers.each do |answer|%>
+    <div class='voting_box'>
+      <form class="upvote" method='post' action="/answers/<%= answer.id %>/upvote">
+        <input type="submit" value="Up Vote">
+      </form>
+    <div class="vote-count"><%= answer.vote_count %></div>
+      <form class="downvote" method='post' action="/answers/<%= answer.id %>/downvote">
+        <input type="submit" value="Down Vote">
+      </form>
+    </div>
+    <li><%= answer.answer %></li><br>
+    <li><a href='/users/<%= answer.user_id %>'><%= User.find(answer.user_id).first_name %></a></li><br>
+
+    <% if current_user.id == answer.user_id %>
+      <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit your answer</a>
+      <form class="" action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete your answer">
+      </form>
+    <% end %>
+
+<!-- Comments to answers -->
+    <div class='answer_comments'>
+      <%answer.comments.each do |comment|%>
+      <li><%=comment.comment%></li>
+      <li><a href='/users/<%= comment.user_id %>'><%= User.find(comment.user_id).first_name %></a></li>
+      <li><%=comment.created_at%></li>
+
+      <% if current_user.id == comment.user_id %>
+        <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments/<%= comment.id %>/edit">Edit your comment</a>
+        <form class="" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments/<%= comment.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete your comment">
+        </form>
+      <% end %>
+
   <%end%>
+
   <div>
   Comment
   <% if @errors %>
-  <%@errors.each do |error|%>
-  <%=error%>
-  <%end%>
-  <%end%>
+    <%@errors.each do |error|%>
+      <%=error%>
+      <%end%>
+    <%end%>
   <!-- question answer form -->
   <form action='/questions/<%=@question.id%>/answers/<%=answer.id%>/comments/new' method='post'>
     <input type="text" name="comment">
