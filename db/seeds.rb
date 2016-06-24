@@ -64,11 +64,13 @@ end
 question = Question.find(1)
 
 Vote.create!(user_id: question.user_id, votable_id: 1, votable_type: "Question", vote_value: 1)
+
 40.times do
-  Tag.create!({subject: Faker::Superhero.name})
+  Tag.create!({subject: Faker::Superhero.name,
+              summary: Faker::Lorem.paragraph(2)})
 end
 
 
-10.times do
+60.times do
     Question.find(rand(1..20)).tags << Tag.find(rand(1..40))
 end

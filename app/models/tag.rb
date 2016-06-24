@@ -49,5 +49,9 @@ class Tag < ActiveRecord::Base
     the_class.sort {|a,b| a.created_at.to_i <=> b.created_at.to_i}
   end
 
-
+  #gives an alphabetized array
+  def self.alphabetize
+    the_class = self.all.to_a
+    the_class.sort_by { |tag| tag.subject.downcase }
+  end
 end
