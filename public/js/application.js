@@ -69,7 +69,18 @@ $(document).ready(function(){
         $('#partial-container').html(response);
         // $(document).on('change', '#partial-container', function() {
         //   $('#partial-container').html(response);
-      
+
+      });
+    });
+
+    $('.tag-link').on('click', function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('href'),
+        method: 'GET'
+      })
+      .done(function(response) {
+        $('#tag_partials').html(response);
       });
     });
     // $('.upvote').on('submit', function(e) {
