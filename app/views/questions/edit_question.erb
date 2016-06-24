@@ -6,10 +6,10 @@
     <% end %>
   </ul>
 <% end %>
-<h1>Edit your question</h1>
-<form class="" action="/questions/<%= @question.id %>" method="post">
+<h1 class="edit-header">Edit your question</h1>
+<form class="edit-forms" action="/questions/<%= @question.id %>" method="post">
   <input type="hidden" name="_method" value="put">
   <input type="text" name="edit[title]" value="<%= @question.title %>"><br>
-  <textarea name="edit[question]"><%= @question.question %></textarea><br>
+  <textarea rows="6" columns="200" class="edit-text" name="edit[question]"><%= @question.question %></textarea><br>
   <input type="submit" value="Update your question">
 </form>

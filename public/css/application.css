@@ -371,3 +371,25 @@ li #login-content {
 .regular-list-item {
   float: none;
 }
+
+/* CSS FOR EDITING QUESTIONS/ANSWERS/COMMENTS STARTS HERE */
+.edit-header {
+  font-family: optima;
+  text-align: center;
+  color: red;
+  font-size: 40px;
+}
+
+.edit-forms {
+  max-width: 75%;
+  max-height: 75%;
+  margin: auto;
+  text-align: center;
+}
+
+.edit-text {
+  width: 75%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+/*CSS FOR EDITING QUESTIONS/ANSWERS/COMMENTS ENDS HERE */
