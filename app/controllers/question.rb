@@ -176,3 +176,29 @@ delete '/questions/:q_id/comments/:id' do
   comment.destroy
   redirect "/questions/#{params[:q_id]}"
 end
+
+get '/questions/:q_id/answers/:id/edit' do
+  @question = Question.find(params[:q_id])
+  @answer = Answer.find(params[:id])
+  if current_user.id == @answer.user_id
+    erb :'questions/edit_question_answer'
+  else
+    redirect "/questions/#{@question.id}"
+  end
+end
+
+put '/questions/:q_id/answers/:id' do
+  answer = Answer.find(params[:id])
+  answer.update_attribute(:answer, params[:new_answer])
+  if answer.save
+    redirect "/questions/#{params[:q_id]}"
+  else
+    @errors = question.errors.full_messages
+  end
+end
+
+delete '/questions/:q_id/answers/:id' do
+  answer = Answer.find(params[:id])
+  answer.destroy
+  redirect "/questions/#{params[:q_id]}"
+end

@@ -76,30 +76,44 @@ Comment
 
 <!-- question answers -->
 <h3>Answers</h3>
-<div class='answers'><%@question.answers.each do |answer|%>
-  <div class='voting_box'>
-  <form class="upvote" method='post' action="/answers/<%= answer.id %>/upvote">
-    <input type="submit" value="Up Vote">
-  </form>
-  <div class="vote-count"><%= answer.vote_count %></div>
-  <form class="downvote" method='post' action="/answers/<%= answer.id %>/downvote">
-    <input type="submit" value="Down Vote">
-  </form>
-  </div>
-<li><%=answer.answer%></li><br>
-<li><a href='/users/<%=answer.user_id%>'><%=User.find(answer.user_id).first_name%></a></li><br>
-<div class='answer_comments'><%answer.comments.each do |comment|%>
-<li><%=comment.comment%></li>
-<li><a href='/users/<%=comment.user_id%>'><%=User.find(comment.user_id).first_name%></a></li>
-<li><%=comment.created_at%></li>
+<div class='answers'>
+  <%@question.answers.each do |answer|%>
+    <div class='voting_box'>
+      <form class="upvote" method='post' action="/answers/<%= answer.id %>/upvote">
+        <input type="submit" value="Up Vote">
+      </form>
+    <div class="vote-count"><%= answer.vote_count %></div>
+      <form class="downvote" method='post' action="/answers/<%= answer.id %>/downvote">
+        <input type="submit" value="Down Vote">
+      </form>
+    </div>
+    <li><%= answer.answer %></li><br>
+    <li><a href='/users/<%= answer.user_id %>'><%= User.find(answer.user_id).first_name %></a></li><br>
+
+    <% if current_user.id == answer.user_id %>
+      <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit your answer</a>
+      <form class="" action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete your answer">
+      </form>
+    <% end %>
+
+<!-- Comments to answers -->
+    <div class='answer_comments'>
+      <%answer.comments.each do |comment|%>
+      <li><%=comment.comment%></li>
+      <li><a href='/users/<%= comment.user_id %>'><%= User.find(comment.user_id).first_name %></a></li>
+      <li><%=comment.created_at%></li>
+    
   <%end%>
+
   <div>
   Comment
   <% if @errors %>
-  <%@errors.each do |error|%>
-  <%=error%>
-  <%end%>
-  <%end%>
+    <%@errors.each do |error|%>
+      <%=error%>
+      <%end%>
+    <%end%>
   <!-- question answer form -->
   <form action='/questions/<%=@question.id%>/answers/<%=answer.id%>/comments/new' method='post'>
     <input type="text" name="comment">
