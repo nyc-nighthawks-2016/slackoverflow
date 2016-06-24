@@ -81,7 +81,8 @@ $(document).ready(function(){
       })
       .done(function(response) {
         $('#tag_partials').html(response);
-
+      });
+    });
 // Question Upvote AJAX functionality - CHECK
 
     $('.question-vote-count').on('submit', 'form', function(e) {
@@ -137,4 +138,5 @@ $(document).ready(function(){
         $(downVoteCount).html(response);
       });
     });
+
 });
