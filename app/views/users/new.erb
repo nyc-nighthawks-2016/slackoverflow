@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Create a new account!</h1><br>
+  <h1 class="register-login-header">Create a new account!</h1><br>
   <% if @errors %>
   <ul>
   <% @errors.each do |error| %>
@@ -8,8 +8,8 @@
     <% end %>
   </ul>
   <% end %>
-  <form action="/users" method="post">
-    <table>
+  <form class="edit-forms" action="/users" method="post">
+    <table class="edit-forms">
       <tr>
         <td><label for="user[first_name]">First Name:</label></td>
         <td>&nbsp;&nbsp;&nbsp;</td>

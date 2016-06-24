@@ -404,3 +404,28 @@ li #login-content {
   font-size: 40px;
   color: green;
 }
+
+
+/* WORK ON REGISTER/LOGIN PAGES */
+.register-login-header {
+  text-align: center;
+  color: fuchsia;
+}
+
+/* WORK ON USER PROFILE */
+.user-full-name {
+  font-size: 60px;
+  color: royalblue;
+  width: 400px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.profile-views {
+  width: 70px;
+  display: inline-block;
+}
+
+.account-created {
+  display: block;
+}
