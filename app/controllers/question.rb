@@ -39,62 +39,99 @@ post '/questions/:id' do
 end
 
 post '/questions/:id/upvote' do
-  # if request.xhr?
-  # else
-  @question = Question.find(params[:id])
-	@question_author = User.find(@question.user_id)
-  if session[:user_id]
-	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
-	  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: 1)
-	  end
-	  # end
-	end
+  if request.xhr?
+    @question = Question.find(params[:id])
+    @question_author = User.find(@question.user_id)
+    if session[:user_id]
+      unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+        Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: 1)
+      end
+      vote = @question.vote_count.to_s
+      return vote
+    end
+  else
+    @question = Question.find(params[:id])
+  	@question_author = User.find(@question.user_id)
+    if session[:user_id]
+  	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+  	  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: 1)
+  	  end
+  	end
+  end
   redirect "/questions/#{params[:id]}"
 end
 
 post '/questions/:id/downvote' do
-  # if request.xhr?
-  # else
-  @question = Question.find(params[:id])
-  # binding.pry
-	@question_author = User.find(@question.user_id)
-  if session[:user_id]
-	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
-	  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: -1)
-	  end
-	  # end
+  if request.xhr?
+    @question = Question.find(params[:id])
+    @question_author = User.find(@question.user_id)
+    if session[:user_id]
+      unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+        Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: -1)
+      end
+      vote = @question.vote_count.to_s
+      return vote
+    end
+  else
+    @question = Question.find(params[:id])
+  	@question_author = User.find(@question.user_id)
+    if session[:user_id]
+  	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+  	  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: -1)
+      end
+    end
 	end
 	redirect "/questions/#{params[:id]}"
 end
 
 
 post '/answers/:id/upvote' do
-  # if request.xhr?
-  # else
-  answer = Answer.find(params[:id])
-	@question = answer.question
-	@question_author = User.find(@question.user_id)
-  if session[:user_id]
-	  unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
-	  	Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: 1)
+  if request.xhr?
+    answer = Answer.find(params[:id])
+    @question = answer.question
+    @question_author = User.find(@question.user_id)
+    if session[:user_id]
+      unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
+        Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: 1)
+      end
+      vote = answer.vote_count.to_s
+      return vote
+    end
+  else
+    answer = Answer.find(params[:id])
+  	@question = answer.question
+  	@question_author = User.find(@question.user_id)
+    if session[:user_id]
+  	  unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
+  	  	Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: 1)
+  	  end
 	  end
-	  # end
 	end
   redirect "/questions/#{@question.id}"
 end
 
 
 post '/answers/:id/downvote' do
-  # if request.xhr?
-  # else
-  answer = Answer.find(params[:id])
-	@question = answer.question
-	@question_author = User.find(@question.user_id)
-  if session[:user_id]
-	  unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
-	  	Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: -1)
-	  end
-	  # end
+  if request.xhr?
+    answer = Answer.find(params[:id])
+    @question = answer.question
+    @question_author = User.find(@question.user_id)
+    if session[:user_id]
+      unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
+        Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: -1)
+      end
+      vote = answer.vote_count.to_s
+      return vote
+    end
+  else
+    answer = Answer.find(params[:id])
+  	@question = answer.question
+  	@question_author = User.find(@question.user_id)
+    if session[:user_id]
+  	  unless Vote.find_by(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer")
+  	  	Vote.create!(user_id: session[:user_id], votable_id: answer.id, votable_type: "Answer", vote_value: -1)
+  	  end
+  	end
 	end
 	redirect "/questions/#{@question.id}"
 end
