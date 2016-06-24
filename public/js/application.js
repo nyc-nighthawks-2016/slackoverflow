@@ -74,6 +74,7 @@ $(document).ready(function(){
     });
 
     $('.tag-link').on('click', function(e) {
+      // debugger
       e.preventDefault();
       $.ajax({
         url: $(this).attr('href'),

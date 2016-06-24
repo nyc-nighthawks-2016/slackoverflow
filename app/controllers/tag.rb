@@ -9,25 +9,25 @@ get '/tags/:id' do
   erb :'tags/show'
 end
 
-get '/tags/new' do
+get '/new_tags' do
 	@tags = Tag.newest
 	if request.xhr?
 		erb :'tags/new', layout: false, locals: { tags: @tags }
 	else
-		erb :'tags/index'
+		erb :'tags/new'
 	end
 end
 
-get '/tags/popular' do
-	@tags = Tag.sort {|a,b| a.tag_used <=> b.tag_used}
+get '/pop_tags' do
+	@tags = Tag.all.sort {|a,b| b.tag_used <=> a.tag_used}
 	if request.xhr?
-		erb :'tags/popular', layout: false, locals: { tags: @tags }
+		erb :'tags/pop', layout: false, locals: { tags: @tags }
 	else
-		erb :'tags/popular'
+		erb :'tags/pop'
 	end
 end
 
-get '/tags/name' do
+get '/tag_names' do
 	@tags = Tag.alphabetize
 	if request.xhr?
 		erb :'tags/name', layout: false, locals: { tags: @tags }
