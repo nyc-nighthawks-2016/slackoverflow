@@ -59,6 +59,12 @@ $(document).ready(function(){
       });
     });
 
+    $('.tabs').on('click', 'li', function() {
+    event.preventDefault();
+    $('.tabs > li').removeAttr('class');
+    $(this).addClass('active');
+  });
+
     $('.question-link').on('click', function(e) {
       e.preventDefault();
       $.ajax({
