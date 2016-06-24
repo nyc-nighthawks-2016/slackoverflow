@@ -104,7 +104,15 @@ Comment
       <li><%=comment.comment%></li>
       <li><a href='/users/<%= comment.user_id %>'><%= User.find(comment.user_id).first_name %></a></li>
       <li><%=comment.created_at%></li>
-    
+
+      <% if current_user.id == comment.user_id %>
+        <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments/<%= comment.id %>/edit">Edit your comment</a>
+        <form class="" action="/questions/<%= @question.id %>/answers/<%= answer.id %>/comments/<%= comment.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete your comment">
+        </form>
+      <% end %>
+
   <%end%>
 
   <div>
