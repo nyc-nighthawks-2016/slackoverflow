@@ -8,7 +8,7 @@ get '/tags/new_tags' do
 	if request.xhr?
 		erb :'tags/new', layout: false, locals: { tags: @tags }
 	else
-		erb :'tags/new'
+		erb :'tags/index'
 	end
 end
 
@@ -17,7 +17,7 @@ get '/tags/pop_tags' do
 	if request.xhr?
 		erb :'tags/pop', layout: false, locals: { tags: @tags }
 	else
-		erb :'tags/pop'
+		erb :'tags/index'
 	end
 end
 
@@ -26,7 +26,7 @@ get '/tags/tag_names' do
 	if request.xhr?
 		erb :'tags/name', layout: false, locals: { tags: @tags }
 	else
-		erb :'tags/name'
+		erb :'tags/index'
 	end
 end
 
@@ -35,3 +35,14 @@ get '/tags/:id' do
   @questions = @tag.questions
   erb :'tags/show'
 end
+
+
+# get '/tags/:id/votes' do
+#   @tag = Tag.find(params[:id])
+#   @questions = @tag.questions
+#   if request.xhr?
+#     erb :'tags/votes', layout: false, locals: { tags: @tags, :questions @questions }
+#   else
+#     erb :'tags/show'
+#   end
+# end
