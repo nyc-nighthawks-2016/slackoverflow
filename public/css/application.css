@@ -107,9 +107,42 @@ body {
   font-family: Arial,"Helvetica Neue", Helvetica, sans-serif !important;
 }
 
+.tag-navbar-link {
+  display: block;
+  text-align: center;
+  text-decoration: overline;
+  color: 	#404040;
+  font-size: 20px;
+  font-family: cursive;
+}
+
+.tag-navbar-item{
+  padding: 10px;
+}
+
+.tag-background{
+  opacity: 0%
+}
+
 .navbar-link:hover {
   color: blue;
   background-color: lightblue;
+}
+
+.tag-titles {
+  display: block;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.tag-description{
+  font-style: italic;
+  max-width: 200px;
+  text-align: justify;
+  color: brown;
+  margin: auto;
+  opacity: 40%;
+  padding-bottom: 20px;
 }
 
 #cookie-monster {

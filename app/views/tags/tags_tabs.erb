@@ -1,6 +1,7 @@
-<ul class="regular-list">
+
+    <ul class="regular-list">
   <% @tags.each do |tag| %>
-    <li class="each-user"><div class="user-box"><a href='/tags/<%=tag.id%>'><%=tag.subject%></a> x <%=tag.tag_used%></p>
+    <li class="each-user"><div class="user-box"><a href='/tags/<%=tag.id%>'><p class=tag-titles># <%=tag.subject%></p></a> x <%=tag.tag_used%></p>
     <p class="question-text">
       <% if tag.summary.length > 20 %>
         <% text = tag.summary[0...20]+" ..." %>
@@ -12,3 +13,4 @@
     <p><%=tag.tag_used_today%> asked today, <%=tag.tag_used_this_week%> this week</p><br></div></li>
   <% end %>
 </ul>
+  </div>
