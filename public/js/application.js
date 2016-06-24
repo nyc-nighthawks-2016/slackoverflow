@@ -76,59 +76,55 @@ $(document).ready(function(){
 
     $('.question-vote-count').on('submit', 'form', function(e) {
       e.preventDefault();
-      debugger;
       var upVoteCount = $(this).parent().find('div[class=vote-count]');
       $.ajax({
         url: $(this).attr('action'),
         method: $(this).attr('method')
       })
       .done(function(response) {
-        $(upVoteCount).html(response.votes);
+        $(upVoteCount).html(response);
       });
     });
 
 // Question Downvote AJAX functionality - CHECK
 
-    // $('.question-vote-count').find('.downvote').on('submit', function(e) {
-    //   e.preventDefault();
-    //   debugger;
-    //   var downVoteCount = $(this).parent().find('div[class=vote-count]');
-    //   $.ajax({
-    //     url: $(this).attr('action'),
-    //     method: $(this).attr('method')
-    //   })
-    //   .done(function(response) {
-    //     $(downVoteCount).html(response.votes);
-    //   });
-    // });
+    $('.question-vote-count').on('submit', 'form', function(e) {
+      e.preventDefault();
+      var downVoteCount = $(this).parent().find('div[class=vote-count]');
+      $.ajax({
+        url: $(this).attr('action'),
+        method: $(this).attr('method')
+      })
+      .done(function(response) {
+        $(downVoteCount).html(response);
+      });
+    });
 
 // Answer Upvote AJAX functionality - CHECK
 
-    // $('.voting_box').find('.upvote').on('submit', function(e) {
-    //   e.preventDefault();
-    //   debugger;
-    //   var upVoteCount = $(this).parent().find('div[class=vote-count]');
-    //   $.ajax({
-    //     url: $(this).attr('action'),
-    //     method: $(this).attr('method')
-    //   })
-    //   .done(function(response) {
-    //     $(upVoteCount).html(response.votes);
-    //   });
-    // });
+    $('.voting_box').on('submit', 'form', function(e) {
+      e.preventDefault();
+      var upVoteCount = $(this).parent().find('div[class=vote-count]');
+      $.ajax({
+        url: $(this).attr('action'),
+        method: $(this).attr('method')
+      })
+      .done(function(response) {
+        $(upVoteCount).html(response);
+      });
+    });
 
 // Answer Downvote AJAX functionality - CHECK
 
-    // $('.voting_box').find('.downvote').on('submit', function(e) {
-    //   e.preventDefault();
-      // debugger;
-    //   var downVoteCount = $(this).parent().find('div[class=vote-count]');
-    //   $.ajax({
-    //     url: $(this).attr('action'),
-    //     method: $(this).attr('method')
-    //   })
-    //   .done(function(response) {
-    //     $(downVoteCount).html(response.votes);
-    //   });
-    // });
+    $('.voting_box').on('submit', '.downvote', function(e) {
+      e.preventDefault();
+      var downVoteCount = $(this).parent().find('div[class=vote-count]');
+      $.ajax({
+        url: $(this).attr('action'),
+        method: $(this).attr('method')
+      })
+      .done(function(response) {
+        $(downVoteCount).html(response);
+      });
+    });
 });
