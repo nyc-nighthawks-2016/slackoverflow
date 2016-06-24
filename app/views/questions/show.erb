@@ -98,8 +98,8 @@
           <input type="submit" value="⬇">
         </form>
       </div>
-      <div class="answer"><%= answer.answer %></div>
-      <div class="author"><a href='/users/<%= answer.user_id %>'><%= User.find(answer.user_id).first_name %></a></div>
+      <div class="answer"><%= answer.answer %><span><br><a href='/users/<%= answer.user_id %>'><%= User.find(answer.user_id).first_name %></a> answered on <%= answer.created_at %></span></div>
+<!--       <div class="author"></div> -->
       <% if logged_in? %>
         <% if current_user.id == answer.user_id %>
           <a href="/questions/<%= @question.id %>/answers/<%= answer.id %>/edit">Edit your answer</a>
