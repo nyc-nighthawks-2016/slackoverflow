@@ -11,6 +11,10 @@
 <p><%=@question.question%></p>
 <% if current_user.id == @question.user_id %>
   <a href="/questions/<%= @question.id %>/edit">Edit this post</a>
+  <form class="" action="/questions/<%= @question.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete this post">
+  </form>
 <% end %>
 
 <!-- question votes -->

@@ -144,3 +144,9 @@ put '/questions/:id' do
     @errors = question.errors.full_messages
   end
 end
+
+delete '/questions/:id' do
+  question = Question.find(params[:id])
+  question.destroy
+  redirect '/'
+end
