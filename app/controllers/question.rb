@@ -39,32 +39,52 @@ post '/questions/:id' do
 end
 
 post '/questions/:id/upvote' do
-  # if request.xhr?
-  # else
-  @question = Question.find(params[:id])
-	@question_author = User.find(@question.user_id)
-  if session[:user_id]
-	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
-	  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: 1)
-	  end
-	  # end
-	end
-  redirect "/questions/#{params[:id]}"
+  if request.xhr?
+    @question = Question.find(request[:id])
+    @question_author = User.find(@question.user_id)
+    if session[:user_id]
+      unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+        Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: 1)
+      end
+      # binding.pry
+      content_type :json
+      { id: request[:id], votes: @question.votes }.to_json
+    end
+  else
+    @question = Question.find(params[:id])
+  	@question_author = User.find(@question.user_id)
+    if session[:user_id]
+  	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+  	  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: 1)
+  	  end
+  	end
+  end
+  redirect "/questions/#{params[:id]}" #should this be inside the section statement?
 end
 
 post '/questions/:id/downvote' do
-  # if request.xhr?
-  # else
-  @question = Question.find(params[:id])
-  # binding.pry
-	@question_author = User.find(@question.user_id)
-  if session[:user_id]
-	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
-	  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: -1)
-	  end
-	  # end
+  if request.xhr?
+    @question = Question.find(request[:id])
+    @question_author = User.find(@question.user_id)
+      if session[:user_id]
+        unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+        Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: -1)
+        end
+        # binding.pry
+        content_type :json
+        { id: request[:id], votes: @question.votes }.to_json
+      end
+  else
+    @question = Question.find(params[:id])
+    # binding.pry
+  	@question_author = User.find(@question.user_id)
+      if session[:user_id]
+    	  unless Vote.find_by(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question")
+    	  	Vote.create!(user_id: session[:user_id], votable_id: @question.id, votable_type: "Question", vote_value: -1)
+	      end
+	    end
 	end
-	redirect "/questions/#{params[:id]}"
+	redirect "/questions/#{params[:id]}" #should this be inside the section statement?
 end
 
 
