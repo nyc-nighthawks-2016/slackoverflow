@@ -32,32 +32,46 @@
 
 <!-- question author -->
 <h3>Question author</h3>
-<div><a href="/users/<%= @question_author.id %>"><%= @question_author.first_name %></a></div>
+<div>
+  <a href="/users/<%= @question_author.id %>"><%= @question_author.first_name %></a>
+</div>
 
-<ul>
+
 <!-- question comments -->
 <h3>Question comments</h3>
-<div><%@question.comments.each do |comment|%>
-<li><%=comment.comment%></li>
-<li><a href='/users/<%=comment.user_id%>'><%=User.find(comment.user_id).first_name%></a></li>
-<li><%=comment.created_at%></li><br>
-<%end%>
-</ul>
+
+<div>
+  <ul>
+    <%@question.comments.each do |comment|%>
+      <li><%= comment.comment %></li>
+      <li><a href='/users/<%= comment.user_id %>'><%= User.find(comment.user_id).first_name %></a></li>
+      <li><%= comment.created_at %></li><br>
+      <% if current_user.id == comment.user_id %>
+        <a href="/questions/<%= @question.id %>/comments/<%= comment.id %>/edit">Edit this post</a>
+        <form class="" action="/questions/<%= @question.id %>/comments/<%= comment.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="Delete this comment">
+        </form>
+      <% end %>
+    <%end%>
+  </ul>
 </div>
+
 <div>
 Comment
-<% if @errors %>
-<%@errors.each do |error|%>
-<%=error%>
-<%end%>
-<%end%>
+  <% if @errors %>
+    <%@errors.each do |error|%>
+      <%=error%>
+    <%end%>
+  <%end%>
 <!-- question comment form -->
-<form action='/questions/<%=@question.id%>/comments/new' method='post'>
-  <input type="text" name="comment">
-  <input type="submit" value="Submit">
-</form>
+  <form action='/questions/<%=@question.id%>/comments/new' method='post'>
+    <input type="text" name="comment">
+    <input type="submit" value="Submit">
+  </form>
 </div>
 <br>
+
 <div><%=@question.answers.length%> Answers</div><br>
 
 <!-- question answers -->

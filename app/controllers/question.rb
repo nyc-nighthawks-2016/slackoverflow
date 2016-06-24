@@ -129,7 +129,7 @@ end
 get '/questions/:id/edit' do
   @question = Question.find(params[:id])
   if current_user.id == @question.user_id
-    erb :'questions/edit'
+    erb :'questions/edit_question'
   else
     redirect "/questions/#{@question.id}"
   end
@@ -149,4 +149,30 @@ delete '/questions/:id' do
   question = Question.find(params[:id])
   question.destroy
   redirect '/'
+end
+
+get '/questions/:q_id/comments/:id/edit' do
+  @question = Question.find(params[:q_id])
+  @comment = Comment.find(params[:id])
+  if current_user.id == @comment.user_id
+    erb :'questions/edit_question_comment'
+  else
+    redirect "/questions/#{@question.id}"
+  end
+end
+
+put '/questions/:q_id/comments/:id' do
+  comment = Comment.find(params[:id])
+  comment.update_attribute(:comment, params[:new_comment])
+  if comment.save
+    redirect "/questions/#{params[:q_id]}"
+  else
+    @errors = question.errors.full_messages
+  end
+end
+
+delete '/questions/:q_id/comments/:id' do
+  comment = Comment.find(params[:id])
+  comment.destroy
+  redirect "/questions/#{params[:q_id]}"
 end
