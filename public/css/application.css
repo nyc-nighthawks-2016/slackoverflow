@@ -465,7 +465,8 @@ li #login-content {
 .answer {
   position: absolute;
   font-size: large;
-  margin-left: 40%;
+  margin-left: 35%;
+  width: 75%;
 }
 
 
@@ -477,7 +478,7 @@ li #login-content {
 
 .answer-comments {
   padding-top: 20px;
-  margin-top: 50px;
+  margin-top: 200px;
   margin-left: 22%;
 }
 
