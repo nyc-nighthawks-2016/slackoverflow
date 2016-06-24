@@ -9,6 +9,13 @@
 <!-- question body -->
 <h3>Question body</h3>
 <p><%=@question.question%></p>
+
+<p> Tags:
+  <% @question.tags.each do |tag| %>
+    <span class="question-tag"><%= tag.subject %> </span>
+  <% end %>
+</p>
+
 <% if logged_in? %>
   <% if current_user.id == @question.user_id %>
     <a href="/questions/<%= @question.id %>/edit">Edit this post</a>
